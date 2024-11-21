@@ -1,89 +1,95 @@
-'use client'; // Assurez-vous que ce code est exécuté côté client
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation'; // Utiliser le hook useRouter
+import Image from 'next/image';
+
+// Define movie and TV show interface
+interface Media {
+  id: number;
+  title?: string;
+  name?: string; // For TV shows
+  poster_path: string;
+  release_date?: string;
+  first_air_date?: string; // For TV shows
+}
 
 const DashboardPage = () => {
-  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState('movies-now-playing');
-  const [movies, setMovies] = useState<any[]>([]); // Initialiser 'movies' avec un tableau vide
+  const [media, setMedia] = useState<Media[]>([]);
 
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
 
-  const handleDiscoverClick = () => {
-    setSelectedCategory('discover'); // Catégorie spécifique pour "Discover"
-  };
-
-  // Fetch movies when category changes
+  // Fetch media (movies or TV shows) when category changes
   useEffect(() => {
-    const fetchMovies = async () => {
-      const res = await fetch(`https://api.themoviedb.org/3/movie/${selectedCategory}?api_key=YOUR_API_KEY`);
+    const fetchMedia = async () => {
+      let url = '';
+      if (selectedCategory.startsWith('movies-')) {
+        url = `https://api.themoviedb.org/3/movie/${selectedCategory.replace('movies-', '')}?api_key=NEXT_PUBLIC_TMDB_API_KEY`;
+      } else if (selectedCategory.startsWith('tv-')) {
+        url = `https://api.themoviedb.org/3/tv/${selectedCategory.replace('tv-', '')}?api_key=NEXT_PUBLIC_TMDB_API_KEY`;
+      }
+
+      const res = await fetch(url);
       const data = await res.json();
-      setMovies(data.results || []); // Assurez-vous que "data.results" est toujours un tableau
+      setMedia(data.results || []);
     };
 
-    fetchMovies();
+    fetchMedia();
   }, [selectedCategory]);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       {/* Sidebar */}
-      <div style={{
-        width: '180px',  // Réduit la largeur de la sidebar
-        backgroundColor: '#FF69B4', // Sidebar rose
-        color: 'white',
-        padding: '10px',  // Réduit les marges internes
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}>
+      <div
+        style={{
+          width: '180px',
+          backgroundColor: '#FF69B4',
+          color: 'white',
+          padding: '10px',
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
         <div>
           <div style={{ fontSize: '1.1rem', marginBottom: '10px', textAlign: 'center' }}>
-            🎀 Cinetica 🎀 {/* Titre plus petit */}
+            🎀 Cinetica 🎀
           </div>
-
           {/* Discover Section */}
-          <div style={{ marginBottom: '15px' }}>
-            <h3 style={sectionTitleStyle}>🌟 
-              <span
-                onClick={handleDiscoverClick}
-                style={clickableItemStyle}
-              >
-                Discover
-              </span>
+          <div>
+            <h3 onClick={() => handleCategoryClick('movies-now-playing')} style={{ cursor: 'pointer', marginBottom: '10px' }}>
+              🌟 Discover
             </h3>
           </div>
-
           {/* Movies Section */}
-          <div style={{ marginBottom: '15px' }}>
-            <h3 style={sectionTitleStyle}>🎥 Movies</h3>
-            <ul style={{ listStyleType: 'none', padding: '0' }}>
-              <li onClick={() => handleCategoryClick('now_playing')} style={clickableItemStyle}>
+          <div>
+            <h3>🎥 Movies</h3>
+            <ul style={{ listStyle: 'none', padding: '0' }}>
+              <li onClick={() => handleCategoryClick('movies-now-playing')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
                 🎬 Now Playing
               </li>
-              <li onClick={() => handleCategoryClick('popular')} style={clickableItemStyle}>
+              <li onClick={() => handleCategoryClick('movies-popular')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
                 🌟 Popular
               </li>
-              <li onClick={() => handleCategoryClick('top_rated')} style={clickableItemStyle}>
+              <li onClick={() => handleCategoryClick('movies-top-rated')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
                 🏆 Top Rated
               </li>
             </ul>
           </div>
-
           {/* TV Shows Section */}
           <div>
-            <h3 style={sectionTitleStyle}>📺 TV Shows</h3>
-            <ul style={{ listStyleType: 'none', padding: '0' }}>
-              <li onClick={() => handleCategoryClick('on_the_air')} style={clickableItemStyle}>
-                📡 On the Air
+            <h3>📺 TV Shows</h3>
+            <ul style={{ listStyle: 'none', padding: '0' }}>
+              <li onClick={() => handleCategoryClick('tv-on_the_air')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
+                📡 Now Airing
               </li>
-              <li onClick={() => handleCategoryClick('tv_popular')} style={clickableItemStyle}>
+              <li onClick={() => handleCategoryClick('tv-popular')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
                 🌟 Popular
               </li>
-              <li onClick={() => handleCategoryClick('tv_top_rated')} style={clickableItemStyle}>
+              <li onClick={() => handleCategoryClick('tv-top_rated')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
                 🏆 Top Rated
               </li>
             </ul>
@@ -94,52 +100,33 @@ const DashboardPage = () => {
       {/* Main Content */}
       <div style={{ flex: 1, padding: '20px' }}>
         <h1>{selectedCategory.replace(/_/g, ' ').toUpperCase()}</h1>
-        {/* Contenu dynamique basé sur la catégorie sélectionnée */}
-        <div>
-          <h3>Films</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
-            {movies.length === 0 ? (
-              <p>Aucun film disponible pour cette catégorie</p>
-            ) : (
-              movies.map((movie: any) => (
-                <div key={movie.id} style={{ background: '#FFF', borderRadius: '8px', overflow: 'hidden' }}>
-                  <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} style={{ width: '100%' }} />
-                  <div style={{ padding: '10px' }}>
-                    <h4>{movie.title}</h4>
-                    <p>{movie.release_date}</p>
-                  </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
+          {media.length === 0 ? (
+            <p>No media available for this category</p>
+          ) : (
+            media.map((item) => (
+              <div
+                key={item.id}
+                style={{ background: '#FFF', borderRadius: '8px', overflow: 'hidden' }}
+              >
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                  alt={item.title || item.name || 'No title available'}
+                  width={500}
+                  height={750}
+                  style={{ width: '100%' }}
+                />
+                <div style={{ padding: '10px' }}>
+                  <h4>{item.title || item.name}</h4>
+                  <p>{item.release_date || item.first_air_date}</p>
                 </div>
-              ))
-            )}
-          </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>
   );
-};
-
-// Style pour chaque élément cliquable avec juste l'effet de zoom
-const clickableItemStyle = {
-  padding: '6px 10px',
-  marginBottom: '5px',
-  cursor: 'pointer',
-  borderRadius: '5px',
-  fontSize: '0.85rem',
-  transition: 'transform 0.2s ease',  // Transition de zoom
-  // Sur hover, applique un effet de zoom
-  ':hover': {
-    transform: 'scale(1.05)',  // Zoom léger sur hover
-  },
-  ':active': {
-    transform: 'scale(1)',  // Reviens à la taille normale lors du clic
-  },
-};
-
-// Style pour les titres des sections
-const sectionTitleStyle = {
-  marginBottom: '5px',
-  fontSize: '0.9rem',
-  fontWeight: 'bold',
 };
 
 export default DashboardPage;
