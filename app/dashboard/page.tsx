@@ -1,16 +1,14 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-// Define movie and TV show interface
 interface Media {
   id: number;
   title?: string;
-  name?: string; // For TV shows
+  name?: string; 
   poster_path: string;
   release_date?: string;
-  first_air_date?: string; // For TV shows
+  first_air_date?: string; 
 }
 
 const DashboardPage = () => {
@@ -20,8 +18,6 @@ const DashboardPage = () => {
   const handleCategoryClick = (category: string) => {
     setSelectedCategory(category);
   };
-
-  // Fetch media (movies or TV shows) when category changes
   useEffect(() => {
     const fetchMedia = async () => {
       let url = '';
