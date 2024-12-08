@@ -20,6 +20,7 @@ const authOptions: NextAuthOptions = {
         password: { label: "Mot de passe", type: "password" },
       },
       async authorize(credentials) {
+        console.log("Credentials:", credentials);
         if (!credentials?.email || !credentials.password) {
           throw new Error("Email et mot de passe sont requis.");
         }
@@ -31,6 +32,7 @@ const authOptions: NextAuthOptions = {
         );
 
         if (user) {
+          console.log("User found:", user);
           return {
             id: user.id,
             name: user.name,
@@ -38,6 +40,7 @@ const authOptions: NextAuthOptions = {
             apiKey: user.apiKey, 
           }; 
         } else {
+          console.log("User not found."); 
           return null; 
         }
       },
@@ -49,6 +52,7 @@ const authOptions: NextAuthOptions = {
   },
   pages: {
     signIn: "/login", 
+    error: "/login",
   },
   secret: process.env.NEXTAUTH_SECRET, 
 };
