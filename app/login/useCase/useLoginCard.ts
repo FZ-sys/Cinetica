@@ -1,14 +1,14 @@
 'use client';
+
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useCredentials } from "./useCredentials"; 
+import { useCredentials } from "./useCredentials";
 import { useState } from "react"; 
 
 export const useLoginUseCase = () => {
   const { credentials, setCredentials } = useCredentials();
-  const router = useRouter();
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState<string | null>(null); 
+  
   const loginAndRedirectIfSuccess = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
@@ -17,13 +17,14 @@ export const useLoginUseCase = () => {
       const signInResponse = await signIn("credentials", {
         email: credentials.email,
         password: credentials.password,
-        redirect: false,
+        redirect: false,  
+        callbackUrl: "/dashboard",  
       });
   
       console.log("SignIn Response:", signInResponse); 
   
       if (signInResponse?.ok) {
-        router.push("/dashboard");
+        window.location.href = "/dashboard"; 
       } else {
         setError("Adresse e-mail ou mot de passe incorrect.");
       }
@@ -34,5 +35,6 @@ export const useLoginUseCase = () => {
       setLoading(false); 
     }
   };
+
   return { credentials, setCredentials, loginAndRedirectIfSuccess, loading, error };
 };

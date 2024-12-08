@@ -1,4 +1,7 @@
+'use client'; 
+
 import { LoginCard } from "./Components/loginCard";
+
 const LoginPage = () => {
   return (
     <div>
@@ -6,4 +9,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;
