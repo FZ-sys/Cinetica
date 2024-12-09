@@ -1,5 +1,4 @@
 'use client';
-
 import { signIn } from "next-auth/react";
 import { useState } from "react"; 
 import { useCredentials } from "./useCredentials";

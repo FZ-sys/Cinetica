@@ -1,5 +1,3 @@
-'use client'; 
-
 import { LoginCard } from "./Components/loginCard";
 
 const LoginPage = () => {
