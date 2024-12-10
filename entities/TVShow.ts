@@ -1,9 +1,7 @@
 export interface TVShow {
-    id: number;
-    name: string;
-    overview: string;
-    firstAirDate: string;
-    posterPath: string;
-    voteAverage: number;
-  }
-  
+  id: number;
+  name: string;
+  overview: string;
+  poster_path: string;
+  first_air_date: string;
+}

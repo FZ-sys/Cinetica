@@ -1,128 +1,210 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+"use client";
 
-interface Media {
-  id: number;
-  title?: string;
-  name?: string; 
-  poster_path: string;
-  release_date?: string;
-  first_air_date?: string; 
-}
+import React, { useState } from 'react';
+import { useFetchPopularMovies } from './hooks/useFetchPopularMovies';
+import { useFetchTopRatedMovies } from './hooks/useFetchTopRatedMovies';
+import { useFetchDiscoverMovies } from './hooks/useFetchDiscoverMovies';
+import { useFetchNowPlayingMovies } from './hooks/useFetchNowPlayingMovies';
+import { useFetchPopularTVShows } from './hooks/useFetchPopularSeries';
+import { useFetchTopRatedTVShows } from './hooks/useFetchTopRatedTVShows';
+import { useFetchDiscoverTVShows } from './hooks/useFetchDiscoverTVShows';
+import { useFetchOnTheAirTVShows } from './hooks/useFetchOnTheAirTVShows';
+import Carousel from './Components/Carousel';
+import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
+import SearchBar from './Components/SearchBar';
+import styles from './styles/dashboard.module.css';
 
-const DashboardPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState('movies-now-playing');
-  const [media, setMedia] = useState<Media[]>([]);
-
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
-  };
-  useEffect(() => {
-    const fetchMedia = async () => {
-      let url = '';
-      if (selectedCategory.startsWith('movies-')) {
-        url = `https://api.themoviedb.org/3/movie/${selectedCategory.replace('movies-', '')}?api_key=NEXT_PUBLIC_TMDB_API_KEY`;
-      } else if (selectedCategory.startsWith('tv-')) {
-        url = `https://api.themoviedb.org/3/tv/${selectedCategory.replace('tv-', '')}?api_key=NEXT_PUBLIC_TMDB_API_KEY`;
-      }
-
-      const res = await fetch(url);
-      const data = await res.json();
-      setMedia(data.results || []);
-    };
-
-    fetchMedia();
-  }, [selectedCategory]);
-
-  return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      {/* Sidebar */}
-      <div
-        style={{
-          width: '180px',
-          backgroundColor: '#FF69B4',
-          color: 'white',
-          padding: '10px',
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div>
-          <div style={{ fontSize: '1.1rem', marginBottom: '10px', textAlign: 'center' }}>
-            🎀 Cinetica 🎀
-          </div>
-          {/* Discover Section */}
-          <div>
-            <h3 onClick={() => handleCategoryClick('movies-now-playing')} style={{ cursor: 'pointer', marginBottom: '10px' }}>
-              🌟 Discover
-            </h3>
-          </div>
-          {/* Movies Section */}
-          <div>
-            <h3>🎥 Movies</h3>
-            <ul style={{ listStyle: 'none', padding: '0' }}>
-              <li onClick={() => handleCategoryClick('movies-now-playing')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                🎬 Now Playing
-              </li>
-              <li onClick={() => handleCategoryClick('movies-popular')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                🌟 Popular
-              </li>
-              <li onClick={() => handleCategoryClick('movies-top-rated')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                🏆 Top Rated
-              </li>
-            </ul>
-          </div>
-          {/* TV Shows Section */}
-          <div>
-            <h3>📺 TV Shows</h3>
-            <ul style={{ listStyle: 'none', padding: '0' }}>
-              <li onClick={() => handleCategoryClick('tv-on_the_air')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                📡 Now Airing
-              </li>
-              <li onClick={() => handleCategoryClick('tv-popular')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                🌟 Popular
-              </li>
-              <li onClick={() => handleCategoryClick('tv-top_rated')} style={{ cursor: 'pointer', marginBottom: '5px' }}>
-                🏆 Top Rated
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div style={{ flex: 1, padding: '20px' }}>
-        <h1>{selectedCategory.replace(/_/g, ' ').toUpperCase()}</h1>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px' }}>
-          {media.length === 0 ? (
-            <p>No media available for this category</p>
-          ) : (
-            media.map((item) => (
-              <div
-                key={item.id}
-                style={{ background: '#FFF', borderRadius: '8px', overflow: 'hidden' }}
-              >
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  alt={item.title || item.name || 'No title available'}
-                  width={500}
-                  height={750}
-                  style={{ width: '100%' }}
-                />
-                <div style={{ padding: '10px' }}>
-                  <h4>{item.title || item.name}</h4>
-                  <p>{item.release_date || item.first_air_date}</p>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
-  );
+// Fonction de normalisation des chaînes de caractères
+const normalizeString = (str: string) => {
+    return str
+        .trim()  // Supprime les espaces avant et après
+        .toLowerCase()  // Met en minuscule
+        .normalize("NFD") // Décompose les caractères accentués en lettres de base et accents
+        .replace(/[\u0300-\u036f]/g, ""); // Supprime les accents
 };
 
-export default DashboardPage;
+const Dashboard = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    // Fetch movies
+    const { movies: popularMovies, isLoading: loadingMovies, isError: errorMovies } = useFetchPopularMovies();
+    const { movies: topRatedMovies, isLoading: loadingTopRatedMovies, isError: errorTopRatedMovies } = useFetchTopRatedMovies();
+    const { movies: discoverMovies, isLoading: loadingDiscoverMovies, isError: errorDiscoverMovies } = useFetchDiscoverMovies();
+    const { movies: nowPlayingMovies, isLoading: loadingNowPlayingMovies, isError: errorNowPlayingMovies } = useFetchNowPlayingMovies();
+
+    // Fetch TV shows
+    const { tvShows: popularTVShows, isLoading: loadingTVShows, isError: errorTVShows } = useFetchPopularTVShows();
+    const { tvShows: topRatedTVShows, isLoading: loadingTopRatedTVShows, isError: errorTopRatedTVShows } = useFetchTopRatedTVShows();
+    const { tvShows: discoverTVShows, isLoading: loadingDiscoverTVShows, isError: errorDiscoverTVShows } = useFetchDiscoverTVShows();
+    const { tvShows: onTheAirTVShows, isLoading: loadingOnTheAirTVShows, isError: errorOnTheAirTVShows } = useFetchOnTheAirTVShows();
+
+    const isLoading =
+        loadingMovies ||
+        loadingTopRatedMovies ||
+        loadingDiscoverMovies ||
+        loadingNowPlayingMovies ||
+        loadingTVShows ||
+        loadingTopRatedTVShows ||
+        loadingDiscoverTVShows ||
+        loadingOnTheAirTVShows;
+
+    const isError =
+        errorMovies ||
+        errorTopRatedMovies ||
+        errorDiscoverMovies ||
+        errorNowPlayingMovies ||
+        errorTVShows ||
+        errorTopRatedTVShows ||
+        errorDiscoverTVShows ||
+        errorOnTheAirTVShows;
+
+    // Helper function to filter movies based on searchQuery
+    const filteredMovies = (movies: any[]) => {
+        console.log('Search Query (Movies):', searchQuery); // Vérifie la chaîne de recherche
+        console.log('Movies before filtering:', movies); // Vérifie les films avant le filtrage
+        
+        const query = normalizeString(searchQuery);  // Normalisation de la chaîne de recherche
+        const filtered = movies.filter((movie) =>
+            normalizeString(movie.title || '').includes(query)  // Filtrage insensible à la casse et aux accents
+        );
+        
+        console.log('Movies after filtering:', filtered); // Vérifie les films après le filtrage
+        return filtered;
+    };
+
+    // Helper function to filter TV shows based on searchQuery
+    const filteredTVShows = (tvShows: any[]) => {
+        console.log('Search Query (TV Shows):', searchQuery); // Vérifie la chaîne de recherche
+        console.log('TV Shows before filtering:', tvShows); // Vérifie les séries avant le filtrage
+        
+        const query = normalizeString(searchQuery);  // Normalisation de la chaîne de recherche
+        const filtered = tvShows.filter((tvShow) =>
+            normalizeString(tvShow.title || '').includes(query)  // Filtrage insensible à la casse et aux accents
+        );
+        
+        console.log('TV Shows after filtering:', filtered); // Vérifie les séries après le filtrage
+        return filtered;
+    };
+
+    if (isLoading) {
+        return <div className={styles.loading}>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div className={styles.error}>There was an error loading the data. Please try again later.</div>;
+    }
+
+    return (
+        <div className={styles.dashboard}>
+            <Navbar />
+            <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+            <div className={styles.content}>
+                <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+
+                {/* Movies Sections */}
+                <h2 className={styles.sectionTitle}>Popular Movies</h2>
+                <Carousel
+                    items={popularMovies?.length ? filteredMovies(
+                        popularMovies?.map((movie) => ({
+                            title: movie.title,
+                            posterUrl: movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>Top Rated Movies</h2>
+                <Carousel
+                    items={topRatedMovies?.length ? filteredMovies(
+                        topRatedMovies?.map((movie) => ({
+                            title: movie.title,
+                            posterUrl: movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>Discover Movies</h2>
+                <Carousel
+                    items={discoverMovies?.length ? filteredMovies(
+                        discoverMovies?.map((movie) => ({
+                            title: movie.title,
+                            posterUrl: movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>Now Playing Movies</h2>
+                <Carousel
+                    items={nowPlayingMovies?.length ? filteredMovies(
+                        nowPlayingMovies?.map((movie) => ({
+                            title: movie.title,
+                            posterUrl: movie.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                {/* TV Shows Sections */}
+                <h2 className={styles.sectionTitle}>Popular TV Shows</h2>
+                <Carousel
+                    items={popularTVShows?.length ? filteredTVShows(
+                        popularTVShows?.map((tvShow) => ({
+                            title: tvShow.name,
+                            posterUrl: tvShow.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>Top Rated TV Shows</h2>
+                <Carousel
+                    items={topRatedTVShows?.length ? filteredTVShows(
+                        topRatedTVShows?.map((tvShow) => ({
+                            title: tvShow.name,
+                            posterUrl: tvShow.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>Discover TV Shows</h2>
+                <Carousel
+                    items={discoverTVShows?.length ? filteredTVShows(
+                        discoverTVShows?.map((tvShow) => ({
+                            title: tvShow.name,
+                            posterUrl: tvShow.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+
+                <h2 className={styles.sectionTitle}>On The Air TV Shows</h2>
+                <Carousel
+                    items={onTheAirTVShows?.length ? filteredTVShows(
+                        onTheAirTVShows?.map((tvShow) => ({
+                            title: tvShow.name,
+                            posterUrl: tvShow.poster_path
+                                ? `https://image.tmdb.org/t/p/w500/${tvShow.poster_path}`
+                                : '/placeholder.jpg',
+                        }))
+                    ) : []}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default Dashboard;
