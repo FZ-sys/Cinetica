@@ -9,8 +9,19 @@ type MovieCardProps = {
 const MovieCard: React.FC<MovieCardProps> = ({ title, posterUrl }) => {
   return (
     <div className={styles.card}>
-      <img src={posterUrl} alt={title} className={styles.poster} />
-      <p className={styles.title}>{title}</p>
+      <div className={styles.imageWrapper}>
+        <img
+          src={posterUrl}
+          alt={title}
+          className={styles.poster}
+          loading="lazy"
+        />
+      </div>
+      <div className={styles.cardInfo}>
+        <p className={styles.title} title={title}> 
+          {title}
+        </p>
+      </div>
     </div>
   );
 };

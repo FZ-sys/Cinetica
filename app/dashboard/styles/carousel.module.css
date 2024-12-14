@@ -1,35 +1,53 @@
 .carouselContainer {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    gap: 16px;
-    padding: 16px 0;
-  }
-  
-  .carouselContainer::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .carouselItem {
-    flex: 0 0 auto;
-    width: 150px;
-    text-align: center;
-  }
-  
-  .poster {
-    width: 100%;
-    border-radius: 8px;
-    transition: transform 0.3s;
-  }
-  
-  .poster:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
-  
-  .title {
-    font-size: 14px;
-    color: #333;
-    margin-top: 8px;
-  }
-  
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselItem {
+  flex: 0 0 auto;
+  width: 150px;
+  text-align: center;
+}
+
+.poster {
+  width: 100%;  /* Utilise 100% de la largeur de l'élément parent */
+  height: 300px;  /* Hauteur fixe pour uniformité */
+  object-fit: cover;  /* S'assure que l'image s'adapte à la taille sans déformation */
+  border-radius: 8px;  /* Coins arrondis */
+  transition: transform 0.3s;  /* Transition fluide lors des transformations */
+}
+
+.poster:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.title {
+  font-size: 14px;
+  color: #333;
+  margin-top: 8px;
+}
+.carousel img {
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s ease; 
+}
+
+.carousel img:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
+}
+
+.carousel {
+  display: flex;
+  gap: 15px; 
+  padding: 10px 0;
+  overflow-x: auto; 
+}

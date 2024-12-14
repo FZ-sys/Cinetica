@@ -13,7 +13,7 @@ interface DashboardContextType {
     popularTVShows: TVShow[];
     topRatedTVShows: TVShow[];
     discoverTVShows: TVShow[];
-    onTheAirTVShows: TVShow[]; // Ajouter cet état ici
+    onTheAirTVShows: TVShow[]; 
     setPopularMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
     setTopRatedMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
     setDiscoverMovies: React.Dispatch<React.SetStateAction<Movie[]>>;
@@ -21,7 +21,7 @@ interface DashboardContextType {
     setPopularTVShows: React.Dispatch<React.SetStateAction<TVShow[]>>;
     setTopRatedTVShows: React.Dispatch<React.SetStateAction<TVShow[]>>;
     setDiscoverTVShows: React.Dispatch<React.SetStateAction<TVShow[]>>;
-    setOnTheAirTVShows: React.Dispatch<React.SetStateAction<TVShow[]>>; // Ajouter `setOnTheAirTVShows`
+    setOnTheAirTVShows: React.Dispatch<React.SetStateAction<TVShow[]>>; 
 }
 
 const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
@@ -34,9 +34,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
     const [popularTVShows, setPopularTVShows] = useState<TVShow[]>([]);
     const [topRatedTVShows, setTopRatedTVShows] = useState<TVShow[]>([]);
     const [discoverTVShows, setDiscoverTVShows] = useState<TVShow[]>([]);
-    const [onTheAirTVShows, setOnTheAirTVShows] = useState<TVShow[]>([]); // Ajouter l'état ici
+    const [onTheAirTVShows, setOnTheAirTVShows] = useState<TVShow[]>([]);
 
-    // Passer tous les setters, y compris setOnTheAirTVShows
     loadDashboardData(
         setPopularMovies,
         setTopRatedMovies,
@@ -45,7 +44,7 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         setPopularTVShows,
         setTopRatedTVShows,
         setDiscoverTVShows,
-        setOnTheAirTVShows // Passer setOnTheAirTVShows
+        setOnTheAirTVShows 
     );
 
     return (
@@ -65,8 +64,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
                 setTopRatedTVShows,
                 discoverTVShows,
                 setDiscoverTVShows,
-                onTheAirTVShows, // Ajouter onTheAirTVShows ici
-                setOnTheAirTVShows, // Ajouter setOnTheAirTVShows ici
+                onTheAirTVShows, 
+                setOnTheAirTVShows, 
             }}
         >
             {children}

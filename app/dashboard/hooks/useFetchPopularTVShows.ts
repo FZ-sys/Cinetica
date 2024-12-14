@@ -7,7 +7,11 @@ export const useFetchPopularTVShows = () => {
 
     const { data, isLoading, isError } = useQuery<TVShow[]>({
         queryKey: ['popular-tv-shows'],
-        queryFn: async () => await tvShowRepository.getPopularTVShows(),
+        queryFn: async () => {
+            const response = await tvShowRepository.getPopularTVShows();
+            console.log("Réponse API - TV Shows:", response); // Logue la réponse de l'API
+            return response;
+        },
     });
 
     return { tvShows: data, isLoading, isError };

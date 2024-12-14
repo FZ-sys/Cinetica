@@ -1,37 +1,87 @@
+/* Styles pour le bouton hamburger */
+.sidebarToggle {
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100; /* Le bouton doit être au-dessus de la sidebar et du contenu */
+}
+
+/* Cacher le bouton hamburger lorsque la sidebar est ouverte */
+.sidebar.open ~ .content .sidebarToggle {
+  display: none; /* Le bouton hamburger disparaît lorsque la sidebar est ouverte */
+}
+
+/* Ajustement du contenu lorsque la sidebar est ouverte */
+.content.sidebarOpen {
+  margin-left: 250px; /* Décale le contenu à droite pour laisser place à la sidebar */
+  transition: margin-left 0.4s ease; /* Transition douce pour le glissement */
+}
+
+/* Styles de base du dashboard */
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffe6f2;
-    color: #333;
-    padding: 16px;
-  }
-  
-  .content {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 16px;
-  }
-  
-  .sectionTitle {
-    font-size: 24px;
-    margin: 24px 0 16px;
-    color: #ff0066;
-    text-align: left;
-  }
-  
-  .loading {
-    font-size: 18px;
-    color: #999;
-    text-align: center;
-    margin: 32px 0;
-  }
-  
-  .error {
-    font-size: 18px;
-    color: red;
-    text-align: center;
-    margin: 32px 0;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffe6f2;
+  color: #333;
+  padding: 16px;
+  padding-top: 60px; 
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  margin-left: 0; /* Position normale, sans décalage */
+  transition: margin-left 0.6s ease; /* Transition douce pour le mouvement */
+}
+
+.sectionTitle {
+  font-size: 24px;
+  margin: 24px 0 16px;
+  color: #ff0066;
+  text-align: left;
+}
+
+.loading {
+  font-size: 18px;
+  color: #999;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.error {
+  font-size: 18px;
+  color: red;
+  text-align: center;
+  margin: 32px 0;
+}
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffe6f2; /* Couleur d'arrière-plan pour le bandeau */
+  padding: 10px 20px;
+  z-index: 1100; /* Assurer que la barre soit au-dessus de tout le contenu */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+}
+
+/* Bouton hamburger */
+.sidebarToggle {
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+

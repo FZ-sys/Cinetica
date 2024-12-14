@@ -1,20 +1,76 @@
 import React from 'react';
-import styles from '../styles/sidebar.module.css';
+import styles from '../styles/sidebar.module.css'; // Assume que tu as un fichier CSS pour la Sidebar
 
-const Sidebar: React.FC<{ isOpen: boolean; toggleSidebar: () => void }> = ({ isOpen, toggleSidebar }) => {
+interface SidebarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+  // Fonction pour gérer le défilement vers une section
+  const handleClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    toggleSidebar(); // Fermer la sidebar après le clic
+  };
+
   return (
-    <div className={styles.sidebar} style={{ transform: isOpen ? 'translateX(0)' : 'translateX(-100%)' }}>
-      <ul className={styles.navLinks}>
-        <li>
-          <a href="/" className={styles.navLink}>Home</a>
-        </li>
-        <li>
-          <a href="/movies" className={styles.navLink}>Movies</a>
-        </li>
-        <li>
-          <a href="/tv" className={styles.navLink}>TV Shows</a>
-        </li>
-      </ul>
+    <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+      <nav>
+        {/* Section principale de navigation */}
+
+        {/* Section Movies */}
+        <div className={styles.sectionTitle}>Movies</div>
+        <ul>
+          <li>
+            <button onClick={() => handleClick('discoverMovies')} className={styles.navItem}>
+              Discover
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('popularMovies')} className={styles.navItem}>
+              Popular
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('topRatedMovies')} className={styles.navItem}>
+              Top Rated
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('nowPlayingMovies')} className={styles.navItem}>
+              Now Playing
+            </button>
+          </li>
+        </ul>
+
+        {/* Section TV Shows */}
+        <div className={styles.sectionTitle}>TV Shows</div>
+        <ul>
+          <li>
+            <button onClick={() => handleClick('discoverTVShows')} className={styles.navItem}>
+              Discover
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('popularTVShows')} className={styles.navItem}>
+              Popular
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('topRatedTVShows')} className={styles.navItem}>
+              Top Rated
+            </button>
+          </li>
+          <li>
+            <button onClick={() => handleClick('onTheAirTVShows')} className={styles.navItem}>
+              On The Air
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

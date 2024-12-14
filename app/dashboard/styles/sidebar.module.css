@@ -1,27 +1,130 @@
-.sidebar {
-  width: 250px;
-  height: 100%;
-  background-color: #333;
+/* Barre fixe pour le bouton hamburger (toggle) */
+.header-bar {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  background-color: #ffe6f2; /* Couleur pastel rose pâle pour le fond */
+  padding: 10px 20px;
+  z-index: 1100; /* Barre au-dessus du contenu */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour la barre */
+}
+
+/* Le bouton hamburger */
+.sidebarToggle {
+  font-size: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6a4e7c; /* Couleur du bouton */
+  z-index: 1110; /* S'assurer que le bouton reste au-dessus */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Initialement cachée */
+  width: 250px;
+  height: 100%;
+  background-color: rgba(249, 201, 209, 1); /* Couleur pastel rose pâle */
+  color: #6a4e7c; /* Texte doux, foncé */
+  transition: left 0.3s ease-in-out;
+  padding: 80px 15px 10px 15px; /* Espace supérieur pour décoller du bord */
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: flex-start;
 }
 
-.navLinks {
-  list-style: none;
+/* Sidebar ouverte */
+.sidebar.open {
+  left: 0; /* Affiche la sidebar */
+}
+
+/* Titre principal de la section (ex: Movies, TV Shows) */
+.sidebar .section-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff66b2; /* Couleur rose accentuée pour les titres */
+  margin-bottom: 10px;
+  cursor: default;
+  padding: 5px 0;
+  text-transform: uppercase; /* Mettre en majuscules */
+  letter-spacing: 1px; /* Espacement entre les lettres pour un look plus aéré */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Effet hover sur les titres des sections */
+.sidebar .section-title:hover {
+  color: #ff0066; /* Changement de couleur au survol */
+  background-color: rgba(255, 102, 178, 0.2); /* Ajout d'un fond au survol */
+  border-radius: 5px;
+}
+
+/* Liens des sections cliquables (ex: Discover, Popular) */
+.sidebar nav ul {
+  list-style-type: none;
   padding: 0;
+  margin: 0;
+  flex-grow: 1;
 }
 
-.navLink {
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-  display: block;
+/* Chaque élément cliquable de la navigation */
+.sidebar nav ul li {
+  font-size: 16px;
+  font-weight: normal;
+  color: #6a4e7c; /* Couleur douce pour les liens */
+  padding: 8px 0;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  text-transform: capitalize; /* Capitalisation des mots */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 15px; /* Ajout d'un padding à gauche pour décaler les éléments cliquables */
 }
 
-.navLink:hover {
-  background-color: #555;
+/* Effet au survol des liens */
+.sidebar nav ul li:hover {
+  color: #ff0066; /* Changement de couleur au survol */
+  background-color: rgba(255, 102, 178, 0.2); /* Fond rose clair */
+  border-radius: 5px; /* Coins arrondis au survol */
+}
+
+/* Titre de la navigation (ex: Movies, TV Shows, etc.) */
+.sidebar .nav-title {
+  font-size: 18px;
+  color: #ff0066; /* Rose vif pour la section principale */
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ajustement du contenu quand la sidebar est ouverte */
+.content.sidebarOpen {
+  margin-left: 250px; /* Décale le contenu à droite pour laisser place à la sidebar */
+  transition: margin-left 0.4s ease; /* Transition douce pour le glissement */
+}
+
+/* Pour que le contenu ne soit pas chevauché */
+.dashboard {
+  padding-top: 60px; /* Espacement en haut pour que le contenu ne soit pas masqué par la barre fixe */
+  transition: margin-left 0.3s ease; /* Animation pour le déplacement du contenu */
+}
+
+/* Cacher le bouton hamburger lorsque la sidebar est ouverte */
+.sidebar.open ~ .content .sidebarToggle {
+  display: none; /* Le bouton hamburger disparaît lorsque la sidebar est ouverte */
 }

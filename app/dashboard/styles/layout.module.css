@@ -1,0 +1,18 @@
+.layoutContainer {
+    display: flex;
+    min-height: 100vh;
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Quand la sidebar est ouverte, on déplace le contenu */
+  .mainContent.shifted {
+    transform: translateX(250px); /* Décalage du contenu selon la largeur de la sidebar */
+  }
+  
