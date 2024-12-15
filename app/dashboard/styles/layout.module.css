@@ -1,18 +1,51 @@
 .layoutContainer {
-    display: flex;
-    min-height: 100vh;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Contenu principal */
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9; /* Couleur de fond par défaut */
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease; /* Transition douce pour les changements de fond */
+}
+
+/* Quand la sidebar est ouverte, on déplace le contenu */
+.mainContent.shifted {
+  transform: translateX(250px); /* Décalage du contenu selon la largeur de la sidebar */
+}
+
+/* Styles pour le mode sombre */
+.dark .mainContent {
+  background-color: #111827; /* Couleur de fond sombre pour le contenu */
+  color: #f9fafb; /* Couleur du texte claire pour le contenu */
+}
+
+.dark .layoutContainer {
+  background-color: #1f2937; /* Optionnel : Couleur de fond pour le conteneur, peut être ajusté selon le design */
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .layoutContainer {
+    flex-direction: column; /* Passer à une colonne pour les petits écrans */
   }
-  
+
   .mainContent {
-    flex: 1;
-    padding: 20px;
-    background-color: #f9f9f9;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    padding: 15px; /* Réduire le padding sur les petits écrans */
   }
-  
-  /* Quand la sidebar est ouverte, on déplace le contenu */
+
   .mainContent.shifted {
-    transform: translateX(250px); /* Décalage du contenu selon la largeur de la sidebar */
+    transform: translateX(0); /* Éliminer le décalage pour les petits écrans */
   }
-  
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 10px; /* Réduire encore plus le padding */
+  }
+
+  /* Ajustements supplémentaires pour les écrans très petits */
+}

@@ -1,95 +1,122 @@
-/* Layout spécifique pour la page Discover */
-
-/* Ce conteneur recouvre tout l'écran avec un fond sombre transparent */
-.discoverLayout {
+/* Le conteneur global de l'overlay */
+.overlayContainer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre avec une opacité de 80% */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre transparent */
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Assurez-vous que cet élément se trouve au-dessus du reste */
-  }
-  
-  /* Conteneur principal pour tout le contenu dans l'overlay */
-  .overlay {
+    pointer-events: none; /* Permet d'interagir avec le contenu en dessous */
+}
+
+/* Le "nuage" (overlay) qui flotte au-dessus de l'écran */
+.overlay {
     position: relative;
-    background-color: #fff; /* Fond blanc pour le contenu */
+    background-color: rgba(3, 0, 0, 0); /* Légèrement transparent pour voir le dashboard en dessous */
+    border-radius: 15px;
     padding: 20px;
-    max-width: 80%;
-    height: 80%;
-    border-radius: 8px;
-    overflow-y: auto; /* Si le contenu est trop long, un scroll vertical */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 90%; /* Taille réduite pour un effet de nuage */
+    height: 70%;
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-  }
-  
-  /* Le bouton pour fermer le layout */
-  .closeButton button {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    pointer-events: all; /* Permet d'interagir avec l'overlay */
+}
+
+/* Le bouton de fermeture */
+.closeButton {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: transparent;
+    background: transparent;
     border: none;
-    color: white;
     font-size: 30px;
-    cursor: pointer;
-    z-index: 10000; /* Au-dessus de tous les autres éléments */
-    padding: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .closeButton button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-  
-  /* Contenu principal à l'intérieur du layout */
-  .container {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-  }
-  
-  /* Titre des sections de la page */
-  .sectionTitle {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
     color: #333;
-  }
-  
-  /* Style optionnel pour les carrousels (si tu as un carousel personnalisé) */
-  .carousel {
-    margin: 0 auto;
-    padding: 10px;
-    overflow-x: auto;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Carrousel des posters */
+.carousel {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-  }
-  
-  .carouselItem {
+    overflow-x: auto;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Élément du carrousel */
+.carouselItem {
     flex: 0 0 auto;
-    max-width: 250px;
+    max-width: 200px;
     text-align: center;
-  }
-  
-  .carouselItem img {
+}
+
+.carouselItem img {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  }
-  
-  .loading, .error {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.loading,
+.error {
     text-align: center;
     font-size: 18px;
     color: white;
     margin-top: 20px;
-  }
-  
+}
+
+/* Pour gérer le défilement des posters, si nécessaire */
+.carousel::-webkit-scrollbar {
+    display: none; /* Cache la barre de défilement */
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    .overlay {
+        width: 95%; /* Ajustement de la largeur pour les tablettes */
+        height: 80%; /* Ajustement de la hauteur pour les tablettes */
+    }
+
+    .closeButton {
+        font-size: 26px; /* Réduction de la taille du bouton sur les écrans plus petits */
+    }
+
+    .carouselItem {
+        max-width: 150px; /* Largeur maximale réduite pour le carrousel */
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        width: 95%; /* Ajustement de la largeur pour les petits écrans */
+        height: auto; /* Hauteur automatique pour s'adapter au contenu */
+        max-height: 90%; /* Hauteur maximale pour les petits écrans */
+    }
+
+    .closeButton {
+        font-size: 24px; /* Réduction de la taille du bouton pour les très petits écrans */
+    }
+
+    .carouselItem {
+        max-width: 120px; /* Largeur maximale plus petite pour les petits écrans */
+    }
+
+    .loading,
+    .error {
+        font-size: 16px; /* Réduction de la taille de la police pour les petits écrans */
+    }
+}

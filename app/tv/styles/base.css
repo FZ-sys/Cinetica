@@ -7,10 +7,84 @@ body {
   color: #4f3d5c; /* Texte rose foncé pour une meilleure lisibilité */
   line-height: 1.6;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; /* Limite de largeur pour un meilleur centrage */
+  margin: 0 auto; /* Centrer le contenu */
 }
 
 html {
-  font-size: 16px;
+  font-size: 16px; /* Taille de base pour la typographie */
 }
+
+/* Responsive typography */
+h1 {
+  font-size: 2.5rem; /* Taille des titres */
+}
+
+h2 {
+  font-size: 2rem; /* Taille des sous-titres */
+}
+
+h3 {
+  font-size: 1.75rem; /* Taille des titres de troisième niveau */
+}
+
+p {
+  font-size: 1rem; /* Taille de paragraphe */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  body {
+    padding: 15px; /* Réduire le remplissage sur les écrans plus petits */
+  }
+
+  h1 {
+    font-size: 2rem; /* Réduire la taille des titres sur les petits écrans */
+  }
+
+  h2 {
+    font-size: 1.75rem; /* Réduire la taille des sous-titres */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* Réduire la taille des titres de troisième niveau */
+  }
+
+  p {
+    font-size: 0.9rem; /* Réduire la taille du texte des paragraphes */
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px; /* Réduire le remplissage sur les écrans très petits */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Taille de titre très petite */
+  }
+
+  h2 {
+    font-size: 1.25rem; /* Taille de sous-titre très petite */
+  }
+
+  h3 {
+    font-size: 1rem; /* Taille de titre de troisième niveau très petite */
+  }
+
+  p {
+    font-size: 0.8rem; /* Taille de paragraphe très petite */
+  }
+}
+
+/* Utility classes for margins and paddings */
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+

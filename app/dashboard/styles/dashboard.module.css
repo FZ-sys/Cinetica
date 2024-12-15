@@ -26,8 +26,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffe6f2;
-  color: #333;
+  background-color: #ffe6f2; /* Couleur de fond par défaut */
+  color: #333; /* Couleur du texte par défaut */
   padding: 16px;
 }
 
@@ -43,20 +43,64 @@
 .sectionTitle {
   font-size: 24px;
   margin: 24px 0 16px;
-  color: #ff0066;
+  color: #ff0066; /* Couleur de titre par défaut */
   text-align: left;
 }
 
 .loading {
   font-size: 18px;
-  color: #999;
+  color: #999; /* Couleur par défaut pour le texte de chargement */
   text-align: center;
   margin: 32px 0;
 }
 
 .error {
   font-size: 18px;
-  color: red;
+  color: red; /* Couleur par défaut pour le texte d'erreur */
   text-align: center;
   margin: 32px 0;
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .sidebarToggle {
+    font-size: 24px; /* Réduire la taille du bouton hamburger sur les tablettes */
+    left: 20px; /* Ajuster la position */
+  }
+
+  .content.sidebarOpen {
+    margin-left: 200px; /* Réduire le décalage pour les tablettes */
+  }
+
+  .sectionTitle {
+    font-size: 20px; /* Réduire la taille du titre sur les tablettes */
+  }
+
+  .dashboard {
+    padding: 12px; /* Réduire le padding du tableau de bord sur les tablettes */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebarToggle {
+    font-size: 20px; /* Réduire encore plus la taille sur les petits écrans */
+    left: 10px; /* Ajuster la position */
+  }
+
+  .content.sidebarOpen {
+    margin-left: 150px; /* Réduire le décalage pour les petits écrans */
+  }
+
+  .sectionTitle {
+    font-size: 18px; /* Réduire la taille du titre sur les petits écrans */
+  }
+
+  .loading,
+  .error {
+    font-size: 16px; /* Réduire la taille de la police pour les messages */
+  }
+
+  .dashboard {
+    padding: 8px; /* Réduire le padding du tableau de bord sur les petits écrans */
+  }
 }

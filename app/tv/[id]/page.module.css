@@ -6,11 +6,10 @@
   flex-direction: column;
   gap: 50px;
   padding: 50px 20px;
-  background-color: white;
+  background-color: #fff0f7; /* Fond rose pâle par défaut */
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-top: 40px;
-  background-color: #fff0f7;
 }
 
 /* TV Show Header (poster + details) */
@@ -18,7 +17,7 @@
   display: flex;
   gap: 30px;
   align-items: center;
-  background-color: #ffebf2;
+  background-color: #ffebf2; /* Fond rose pâle doux */
   padding: 20px;
   border-radius: 10px;
 }
@@ -47,22 +46,23 @@
 .tvShowTitle {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  color: #f26a8d;
+  color: #f26a8d; /* Titre rose vif */
   margin-bottom: 10px;
 }
 
 .firstAirDate {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #f26a8d;
+  color: #f26a8d; /* Couleur rose pour la date */
 }
 
 .tvShowDescription {
   font-size: 1.2rem;
-  color: #4f3d5c;
+  color: #4f3d5c; /* Texte de description en rose foncé */
   line-height: 1.8;
 }
 
+/* Genre List */
 .genreList {
   display: flex;
   gap: 15px;
@@ -70,7 +70,7 @@
 }
 
 .genreItem {
-  background-color: #f26a8d;
+  background-color: #f26a8d; /* Genre avec fond rose vif */
   padding: 10px 20px;
   border-radius: 25px;
   color: white;
@@ -81,7 +81,7 @@
 }
 
 .genreItem:hover {
-  background-color: #d95f77;
+  background-color: #d95f77; /* Effet de survol avec un rose plus foncé */
   transform: translateY(-5px);
 }
 
@@ -109,7 +109,7 @@
   width: 150px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
-  background-color: #ffebf2;
+  background-color: #ffebf2; /* Légère couleur de fond rose pour chaque élément */
 }
 
 .castItem:hover,
@@ -132,34 +132,30 @@
 
 .castInfo strong {
   font-weight: bold;
-  color: #f26a8d;
+  color: #f26a8d; /* Nom de l'acteur en rose vif */
   font-size: 1.1rem;
 }
 
 .castInfo p {
-  color: #d95f77;
+  color: #d95f77; /* Texte des personnages en rose foncé */
   font-size: 1rem;
-}
-
-.tvShowImage {
-  border-radius: 10px;
 }
 
 /* Error message */
 .errorMessage {
   text-align: center;
-  color: #f26a8d;
+  color: #f26a8d; /* Erreur en rose vif */
   font-size: 1.5rem;
   font-weight: bold;
   padding: 50px 20px;
-  background-color: #fff0f7;
+  background-color: #fff0f7; /* Fond rose doux pour l'erreur */
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Button style */
 .button {
-  background-color: #f26a8d;
+  background-color: #f26a8d; /* Rose vif pour les boutons */
   color: white;
   padding: 12px 25px;
   font-size: 1rem;
@@ -170,5 +166,52 @@
 }
 
 .button:hover {
-  background-color: #d95f77;
+  background-color: #d95f77; /* Rose plus foncé au survol du bouton */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .tvShowContainer {
+    padding: 30px 15px; /* Réduire le remplissage sur les écrans plus petits */
+  }
+
+  .tvShowHeader {
+    flex-direction: column; /* Passer à une colonne pour les petits écrans */
+    align-items: flex-start; /* Aligner les éléments à gauche */
+  }
+
+  .tvShowPoster {
+    width: 100%; /* Rendre l'affiche responsive */
+    max-width: 250px; /* Largeur maximale pour l'affiche */
+  }
+
+  .tvShowTitle {
+    font-size: 2rem; /* Réduire la taille du titre */
+  }
+
+  .tvShowDescription {
+    font-size: 1rem; /* Réduire la taille de la description */
+  }
+
+  .genreItem {
+    font-size: 0.9rem; /* Réduire la taille de la police pour les genres */
+  }
+}
+
+@media (max-width: 480px) {
+  .tvShowTitle {
+    font-size: 1.5rem; /* Plus petite taille de titre */
+  }
+
+  .tvShowDescription {
+    font-size: 0.9rem; /* Plus petite taille de description */
+  }
+
+  .errorMessage {
+    font-size: 1.2rem; /* Réduire la taille du message d'erreur */
+  }
+
+  .button {
+    padding: 10px 20px; /* Réduire le remplissage des boutons */
+  }
 }

@@ -8,6 +8,7 @@ type SearchBarProps = {
 
 const SearchBar: React.FC<SearchBarProps> = ({ value, onChange }) => {
   return (
+    
     <div className={styles.searchBar}>
       <input
         type="text"

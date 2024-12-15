@@ -11,6 +11,7 @@
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour la barre */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le fond et la couleur */
 }
 
 /* Le bouton hamburger */
@@ -127,4 +128,42 @@
 /* Cacher le bouton hamburger lorsque la sidebar est ouverte */
 .sidebar.open ~ .content .sidebarToggle {
   display: none; /* Le bouton hamburger disparaît lorsque la sidebar est ouverte */
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .header-bar {
+    padding: 10px 15px; /* Ajustement du padding sur les écrans plus petits */
+  }
+
+  .sidebar {
+    width: 200px; /* Réduction de la largeur de la sidebar pour les écrans plus petits */
+  }
+
+  .sidebarToggle {
+    font-size: 24px; /* Réduction de la taille du bouton hamburger */
+  }
+
+  .sidebar nav ul li {
+    font-size: 14px; /* Réduction de la taille des liens */
+  }
+}
+
+@media (max-width: 480px) {
+  .header-bar {
+    padding: 10px 10px; /* Moins de padding sur les très petits écrans */
+  }
+
+  .sidebar {
+    width: 100%; /* Sidebar pleine largeur sur mobile */
+    left: -100%; /* Initialement cachée hors écran */
+  }
+
+  .sidebar.open {
+    left: 0; /* Affiche la sidebar en pleine largeur */
+  }
+
+  .content.sidebarOpen {
+    margin-left: 0; /* Pas de décalage de contenu sur mobile */
+  }
 }

@@ -1,51 +1,84 @@
 .container {
   padding: 20px;
-  background-color: #e6ccff; 
-  min-height: 100vh;
+  background-color: #e6ccff; /* Couleur de fond pour la section */
+  min-height: 100vh; /* Hauteur minimale pour couvrir tout l'écran */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Disposition en colonne */
+  align-items: center; /* Centrage des éléments */
 }
 
 .title {
-  font-size: 36px;
-  color: #cc66ff; 
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-size: 36px; /* Taille de la police pour le titre */
+  color: #cc66ff; /* Couleur du texte du titre */
+  text-align: center; /* Alignement du texte au centre */
+  font-weight: bold; /* Gras pour le titre */
+  margin-bottom: 15px; /* Marge inférieure pour espacer du texte suivant */
 }
 
 .description {
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #333; 
+  font-size: 18px; /* Taille de la police pour la description */
+  text-align: center; /* Alignement du texte au centre */
+  margin-bottom: 20px; /* Marge inférieure pour espacer des cartes */
+  color: #333; /* Couleur du texte de la description */
 }
 
 .tvshowsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-  gap: 20px; 
-  width: 100%;
-  max-width: 1200px; 
+  display: grid; /* Utilisation de grid pour la mise en page */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Création de colonnes flexibles */
+  gap: 20px; /* Espacement entre les cartes */
+  width: 100%; /* Largeur totale */
+  max-width: 1200px; /* Largeur maximale */
 }
 
 .tvshowCard {
-  background: #cc99ff; 
-  padding: 20px;
-  border-radius: 10px;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-  cursor: pointer;
+  background: #cc99ff; /* Couleur de fond des cartes */
+  padding: 20px; /* Espacement interne */
+  border-radius: 10px; /* Coins arrondis */
+  color: #fff; /* Couleur du texte sur les cartes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre autour des cartes */
+  text-align: center; /* Alignement du texte au centre */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition douce pour les effets */
+  cursor: pointer; /* Curseur en forme de main au survol */
 }
 
 .tvshowCard:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 6px 12px rgba(204, 102, 255, 0.4); 
+  transform: translateY(-5px); /* Légère élévation de la carte au survol */
+  box-shadow: 0 6px 12px rgba(204, 102, 255, 0.4); /* Ombre plus marquée au survol */
 }
 
 .tvshowCard:active {
-  transform: scale(0.95); 
+  transform: scale(0.95); /* Réduction de la taille lors du clic */
+}
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .title {
+    font-size: 30px; /* Ajustement de la taille du titre sur écrans plus petits */
+  }
+
+  .description {
+    font-size: 16px; /* Ajustement de la taille de la description */
+  }
+
+  .tvshowsGrid {
+    gap: 15px; /* Réduction de l'espace entre les cartes sur les petits écrans */
+  }
+
+  .tvshowCard {
+    padding: 15px; /* Ajustement de l'espacement interne */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 24px; /* Taille de police encore plus petite pour les très petits écrans */
+  }
+
+  .description {
+    font-size: 14px; /* Réduction de la taille de la description */
+  }
+
+  .tvshowCard {
+    padding: 10px; /* Moins d'espacement interne pour les petits écrans */
+  }
 }

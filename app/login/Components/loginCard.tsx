@@ -1,26 +1,31 @@
 'use client';
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useLoginUseCase } from "../useCase/useLoginCard";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"; 
-import React from "react";
-import { useState } from "react";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const LoginCard: React.FC = () => {
   const { credentials, setCredentials, loginAndRedirectIfSuccess } = useLoginUseCase();
-  const [showPassword, setShowPassword] = useState(false); 
+  const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+
+  // Update handleSubmit to accept the event parameter
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission
+    setErrorMessage(""); // Reset error message on submit
+    try {
+      await loginAndRedirectIfSuccess(e); // Pass the event to the function
+    } catch (err: any) {
+      setErrorMessage(err.message); // Handle login errors
+    }
+  };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F0F0F0]">
-      <Card className="w-full sm:w-[100px] md:w-[350px] lg:w-[400px] p-6 border-0 sm:border shadow-lg bg-[#FFB6C1] rounded-lg"> 
-        <form onSubmit={loginAndRedirectIfSuccess}>  
+    <div className="min-h-screen flex items-center justify-center bg-[#F0F0F0] px-4 sm:px-0">
+      <Card className="w-full sm:w-[350px] lg:w-[400px] p-6 border-0 shadow-lg bg-[#FFB6C1] rounded-lg">
+        <form onSubmit={handleSubmit}>
           <CardHeader>
             <CardTitle className="flex justify-center text-[#FFFFFF] text-2xl font-bold">🎀 Cinetica 🎀</CardTitle>
           </CardHeader>
@@ -53,15 +58,23 @@ export const LoginCard: React.FC = () => {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-2 top-2 text-white focus:outline-none"
+                    aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"} // Accessibility
                   >
                     {showPassword ? "🙈" : "👁️"} 
                   </button>
                 </div>
               </div>
+              {errorMessage && (
+                <div className="text-red-500 text-center mt-2">
+                  {errorMessage} {/* Display error message */}
+                </div>
+              )}
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button type="submit" variant="outline" className="text-[#FFFFFF] bg-[#FF6F92] hover:bg-[#FF4D7A] transition duration-200 font-semibold">Se connecter</Button>
+            <Button type="submit" variant="outline" className="text-[#FFFFFF] bg-[#FF6F92] hover:bg-[#FF4D7A] transition duration-200 font-semibold w-full">
+              Se connecter
+            </Button>
           </CardFooter>
         </form>
       </Card>

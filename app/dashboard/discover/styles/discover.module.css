@@ -104,3 +104,42 @@
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Ombre légère et subtile */
 }
+
+/* Styles responsives */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* Réduction du padding sur les petits écrans */
+    }
+
+    .closeButton {
+        font-size: 28px; /* Réduction de la taille du bouton */
+    }
+
+    .carousel {
+        padding: 10px 0; /* Réduction du padding du carrousel */
+    }
+
+    .carouselItem {
+        width: 120px; /* Réduction de la largeur pour les petits écrans */
+        height: 180px; /* Réduction de la hauteur */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px; /* Réduction supplémentaire du padding */
+    }
+
+    .closeButton {
+        font-size: 24px; /* Réduction de la taille du bouton */
+    }
+
+    .carouselItem {
+        width: 100px; /* Largeur plus petite pour les très petits écrans */
+        height: 150px; /* Réduction de la hauteur */
+    }
+
+    .content {
+        padding: 15px; /* Réduction du padding intérieur */
+    }
+}

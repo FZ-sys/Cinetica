@@ -21,6 +21,7 @@
   background-color: #ffebf2; /* Fond rose pâle doux */
   padding: 20px;
   border-radius: 10px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .moviePosterContainer {
@@ -141,10 +142,6 @@
   font-size: 1rem;
 }
 
-.movieImage {
-  border-radius: 10px;
-}
-
 /* Error message */
 .errorMessage {
   text-align: center;
@@ -171,4 +168,71 @@
 
 .button:hover {
   background-color: #d95f77; /* Rose plus foncé au survol du bouton */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .movieHeader {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center the items */
+  }
+
+  .moviePoster {
+    width: 100%; /* Use full width on small screens */
+    max-width: 300px; /* Max width for the poster */
+  }
+
+  .movieContainer {
+    padding: 30px 10px; /* Reduce padding on smaller screens */
+  }
+
+  .movieTitle {
+    font-size: 2rem; /* Smaller title on small screens */
+  }
+
+  .releaseDate {
+    font-size: 1rem; /* Smaller release date */
+  }
+
+  .movieDescription {
+    font-size: 1rem; /* Smaller description */
+  }
+
+  .genreItem {
+    font-size: 0.9rem; /* Smaller font for genre items */
+    padding: 8px 15px; /* Adjust padding */
+  }
+
+  .button {
+    width: 100%; /* Full width buttons on mobile */
+    font-size: 1rem; /* Adjust font size for buttons */
+  }
+
+  .carousel {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px 0; /* Adjust padding */
+  }
+
+  .castItem,
+  .movieImageItem {
+    width: 120px; /* Smaller width for cast and movie images */
+  }
+}
+
+@media (max-width: 480px) {
+  .movieTitle {
+    font-size: 1.8rem; /* Further reduce title size */
+  }
+
+  .releaseDate {
+    font-size: 0.9rem; /* Further reduce release date size */
+  }
+
+  .movieDescription {
+    font-size: 0.9rem; /* Further reduce description size */
+  }
+
+  .button {
+    padding: 10px 20px; /* Adjust button padding for smaller screens */
+  }
 }

@@ -7,12 +7,12 @@
 }
 
 .carouselContainer::-webkit-scrollbar {
-  display: none;
+  display: none; /* Cache la barre de défilement */
 }
 
 .carouselItem {
   flex: 0 0 auto;
-  width: 150px;
+  width: 150px; /* Largeur par défaut pour les écrans larges */
   text-align: center;
 }
 
@@ -31,23 +31,35 @@
 
 .title {
   font-size: 14px;
-  color: #333;
+  color: #333; /* Couleur par défaut */
   margin-top: 8px;
 }
-.carousel img {
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease; 
+
+/* Styles responsives */
+@media (max-width: 768px) {
+  .carouselItem {
+    width: 120px; /* Réduit la largeur pour les tablettes */
+  }
+
+  .poster {
+    height: 200px; /* Réduit la hauteur des images pour les tablettes */
+  }
+
+  .title {
+    font-size: 12px; /* Réduit la taille de la police pour les tablettes */
+  }
 }
 
-.carousel img:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); 
-}
+@media (max-width: 480px) {
+  .carouselItem {
+    width: 100px; /* Réduit encore plus la largeur pour les petits écrans */
+  }
 
-.carousel {
-  display: flex;
-  gap: 15px; 
-  padding: 10px 0;
-  overflow-x: auto; 
+  .poster {
+    height: 150px; /* Réduit la hauteur des images pour les petits écrans */
+  }
+
+  .title {
+    font-size: 10px; /* Réduit encore la taille de la police pour les petits écrans */
+  }
 }
