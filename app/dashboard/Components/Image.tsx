@@ -1,5 +1,7 @@
 import Image from "next/image";
-import { MovieImage } from "@/entities/images";
+export interface MovieImage {
+  filePath: string;
+}
 
 export const ImageGallery = ({ images }: { images: MovieImage[] }) => {
   return (
