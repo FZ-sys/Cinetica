@@ -22,7 +22,7 @@ interface TVShowImages {
 }
 
 export default async function TVShowDetailsPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;  // Résolution de la promesse de params
+  const { id } = await params;
 
   try {
     const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -56,6 +56,9 @@ export default async function TVShowDetailsPage({ params }: { params: Promise<{ 
                 className={styles.tvShowPoster}
                 src={`https://image.tmdb.org/t/p/w500${tvShowDetails.poster_path}`} 
                 alt={tvShowDetails.name} 
+                width={500} 
+                height={750} 
+                layout="intrinsic"
               />
             )}
           </div>
@@ -66,9 +69,13 @@ export default async function TVShowDetailsPage({ params }: { params: Promise<{ 
             <p className={styles.tvShowDescription}>{tvShowDetails.overview}</p>
 
             <div className={styles.genreList}>
-              {tvShowDetails.genres.map((genre, index) => (
-                <span key={index} className={styles.genreItem}>{genre.name}</span>
-              ))}
+              {tvShowDetails.genres.length > 0 ? (
+                tvShowDetails.genres.map((genre, index) => (
+                  <span key={index} className={styles.genreItem}>{genre.name}</span>
+                ))
+              ) : (
+                <p>Aucun genre disponible</p>
+              )}
             </div>
           </div>
         </div>
@@ -76,41 +83,54 @@ export default async function TVShowDetailsPage({ params }: { params: Promise<{ 
         <div className={styles.carouselSection}>
           <h3>Cast</h3>
           <div className={styles.carousel}>
-            {castDetails.cast.slice(0, 10).map((member: CastMember, index: number) => {
-              // Vérifie si l&apos;acteur a une photo, sinon utilise l&apos;image par défaut
-              const actorImage = member.profile_path
-                ? `https://image.tmdb.org/t/p/w200${member.profile_path}`
-                : '/public/actordefaut.png'; // Image par défaut
+            {castDetails.cast.length === 0 ? (
+              <p>Aucun membre du casting trouvé.</p>
+            ) : (
+              castDetails.cast.slice(0, 10).map((member: CastMember, index: number) => {
+                const actorImage = member.profile_path
+                  ? `https://image.tmdb.org/t/p/w200${member.profile_path}`
+                  : '/actordefaut.png';
 
-              return (
-                <div key={index} className={styles.castItem}>
-                  <Image 
-                    className={styles.castProfile} 
-                    src={actorImage} 
-                    alt={member.name} 
-                  />
-                  <div className={styles.castInfo}>
-                    <strong>{member.name}</strong>
-                    <p>{member.character}</p>
+                return (
+                  <div key={index} className={styles.castItem}>
+                    <Image 
+                      className={styles.castProfile} 
+                      src={actorImage} 
+                      alt={member.name} 
+                      width={200} 
+                      height={300} 
+                      layout="intrinsic"
+                    />
+                    <div className={styles.castInfo}>
+                      <strong>{member.name}</strong>
+                      <p>{member.character}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
 
         <div className={styles.carouselSection}>
           <h3>Images de la Série</h3>
           <div className={styles.carousel}>
-            {tvShowImages.backdrops.map((image, index) => (
-              <div key={index} className={styles.tvShowImageItem}>
-                <Image 
-                  className={styles.tvShowImage} 
-                  src={`https://image.tmdb.org/t/p/w500${image.file_path}`} 
-                  alt={`Image ${index + 1}`} 
-                />
-              </div>
-            ))}
+            {tvShowImages.backdrops.length === 0 ? (
+              <p>Aucune image disponible.</p>
+            ) : (
+              tvShowImages.backdrops.map((image, index) => (
+                <div key={index} className={styles.tvShowImageItem}>
+                  <Image 
+                    className={styles.tvShowImage} 
+                    src={`https://image.tmdb.org/t/p/w500${image.file_path}`} 
+                    alt={`Image ${index + 1}`} 
+                    width={500} 
+                    height={300} 
+                    layout="intrinsic"
+                  />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

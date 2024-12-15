@@ -26,41 +26,38 @@ interface MovieImages {
 const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params; // Résolution de la promesse
 
+  const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+  // Helper function to fetch data
+  const fetchData = async (url: string) => {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data from ${url}`);
+    }
+    return response.json();
+  };
+
   try {
-    const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-    const movieRes = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
-    const castRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
-    const imagesRes = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`);
-
-    if (!movieRes.ok || !castRes.ok || !imagesRes.ok) {
-      throw new Error('Le film, le casting ou les images n\'ont pas pu être récupérés.');
-    }
-
-    const movieDetails: MovieDetails = await movieRes.json();
-    const castDetails = await castRes.json();
-    const movieImages: MovieImages = await imagesRes.json();
-
-    if (!movieDetails) {
-      return (
-        <div className={styles.errorMessage}>
-          <h1>Erreur</h1>
-          <p>Le film avec l&apos;ID {id} est introuvable.</p>
-        </div>
-      );
-    }
+    const movieDetails: MovieDetails = await fetchData(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
+    const castDetails = await fetchData(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${API_KEY}`);
+    const movieImages: MovieImages = await fetchData(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`);
 
     return (
       <div className={styles.movieContainer}>
         <div className={styles.movieHeader}>
           <div className={styles.moviePosterContainer}>
-            {movieDetails.poster_path && (
+            {movieDetails.poster_path ? (
               <Image
                 className={styles.moviePoster}
                 src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
                 alt={movieDetails.title}
                 width={500}
                 height={750}
+                loading="lazy"
+                layout="intrinsic" // Use this if you need a responsive size based on the container
               />
+            ) : (
+              <div className={styles.posterFallback}>Image indisponible</div>
             )}
           </div>
 
@@ -85,7 +82,7 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
             {castDetails.cast.slice(0, 10).map((member: CastMember, index: number) => {
               const actorImage = member.profile_path
                 ? `https://image.tmdb.org/t/p/w200${member.profile_path}`
-                : '/images/actordefaut.png'; // Image par défaut
+                : '/actordefaut.png'; // Image par défaut
 
               return (
                 <div key={index} className={styles.castItem}>
@@ -95,6 +92,8 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                     alt={member.name}
                     width={200}
                     height={300}
+                    loading="lazy"
+                    layout="intrinsic" // Use this if you need a responsive size based on the container
                   />
                   <div className={styles.castInfo}>
                     <strong>{member.name}</strong>
@@ -117,6 +116,8 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                   alt={`Image ${index + 1}`}
                   width={500}
                   height={300}
+                  loading="lazy"
+                  layout="intrinsic" // Use this if you need a responsive size based on the container
                 />
               </div>
             ))}

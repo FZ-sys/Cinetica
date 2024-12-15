@@ -29,12 +29,14 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       {items.map((item) => (
         <div key={item.id} className={styles.carouselItem}>
           <Link href={item.link || '#'}>
-            <Image
+          <Image
               src={item.posterUrl}
-              alt={item.title} // Bien que le titre soit ici, il est utilisé seulement pour l'accessibilité
+              alt={`Poster of ${item.title}`} // More descriptive alt text
               className={styles.poster}
-              onError={handleImageError} // Si l'image échoue à se charger, elle est remplacée par le placeholder
-            />
+              onError={handleImageError}
+              width={300}  // Fixed width for the image
+              height={450}
+              />
             {/* Le titre est supprimé, donc pas de h3 */}
           </Link>
         </div>
