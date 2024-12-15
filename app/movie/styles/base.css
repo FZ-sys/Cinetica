@@ -1,0 +1,17 @@
+/* styles/base.css */
+
+/* Styles globaux de base */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fce1e1; /* Fond rose clair */
+    color: #4f3d5c; /* Texte rose foncé pour une meilleure lisibilité */
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  

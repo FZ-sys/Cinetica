@@ -3,6 +3,7 @@ import styles from './page.module.css'; // Importation du module CSS
 import '../styles/base.css';
 import Image from 'next/image';
 
+// Définir les interfaces
 interface MovieDetails {
   title: string;
   overview: string;  // Description du film
@@ -22,8 +23,8 @@ interface MovieImages {
   posters: { file_path: string }[];
 }
 
-export default async function MovieDetailsPage({ params }: { params: { id: string } }) {
-  const { id } = params; // Pas besoin de "await" ici
+const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params; // Résolution de la promesse
 
   try {
     const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -57,13 +58,17 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
                 className={styles.moviePoster}
                 src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
                 alt={movieDetails.title}
+                width={500}
+                height={750}
               />
             )}
           </div>
 
           <div className={styles.movieDetails}>
             <h1 className={styles.movieTitle}>{movieDetails.title}</h1>
-            <p className={styles.releaseDate}>Sorti le : {new Date(movieDetails.release_date).toLocaleDateString()}</p>
+            <p className={styles.releaseDate}>
+              Sorti le : {new Date(movieDetails.release_date).toLocaleDateString()}
+            </p>
             <p className={styles.movieDescription}>{movieDetails.overview}</p>
 
             <div className={styles.genreList}>
@@ -88,6 +93,8 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
                     className={styles.castProfile}
                     src={actorImage}
                     alt={member.name}
+                    width={200}
+                    height={300}
                   />
                   <div className={styles.castInfo}>
                     <strong>{member.name}</strong>
@@ -108,6 +115,8 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
                   className={styles.movieImage}
                   src={`https://image.tmdb.org/t/p/w500${image.file_path}`}
                   alt={`Image ${index + 1}`}
+                  width={500}
+                  height={300}
                 />
               </div>
             ))}
@@ -124,4 +133,6 @@ export default async function MovieDetailsPage({ params }: { params: { id: strin
       </div>
     );
   }
-}
+};
+
+export default MovieDetailsPage;

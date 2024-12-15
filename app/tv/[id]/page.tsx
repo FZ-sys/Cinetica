@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './page.module.css';
-import '../styles/base.css';
 import Image from 'next/image';
 
 interface TVShowDetails {
@@ -22,8 +21,8 @@ interface TVShowImages {
   posters: { file_path: string }[];
 }
 
-export default async function TVShowDetailsPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+export default async function TVShowDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;  // Résolution de la promesse de params
 
   try {
     const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
@@ -32,7 +31,7 @@ export default async function TVShowDetailsPage({ params }: { params: { id: stri
     const imagesRes = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${API_KEY}`);
 
     if (!tvShowRes.ok || !castRes.ok || !imagesRes.ok) {
-      throw new Error("La série, le casting ou les images n\&apos;ont pas pu être récupérés.");
+      throw new Error("La série, le casting ou les images n'ont pas pu être récupérés.");
     }
 
     const tvShowDetails: TVShowDetails = await tvShowRes.json();
