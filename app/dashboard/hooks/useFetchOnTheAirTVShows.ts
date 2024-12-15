@@ -5,10 +5,25 @@ import { TVShow } from '@/entities/TVShow';
 export const useFetchOnTheAirTVShows = () => {
     const { tvShowRepository } = useApplicationRepositoryContext();
 
-    const { data, isLoading, isError } = useQuery<TVShow[]>({
+    const { data, isLoading, isError, error } = useQuery<TVShow[]>({
         queryKey: ['on-the-air-tv-shows'],
-        queryFn: async () => await tvShowRepository.getOnTheAirTVShows(),
+        queryFn: async () => {
+            try {
+                console.log('Fetching on-the-air TV shows...');
+                const result = await tvShowRepository.getAiringTodayTVShows();
+                console.log('Successfully fetched on-the-air TV shows:', result);
+                return result;
+            } catch (err) {
+                console.error('Error fetching on-the-air TV shows:', err);
+                throw err; // Important pour que react-query puisse gérer l'erreur
+            }
+        },
     });
 
-    return { tvShows: data, isLoading, isError };
+    // Logs pour chaque étape du cycle de la requête
+    if (isLoading) console.log('On-The-Air TV Shows: Loading...');
+    if (isError) console.error('On-The-Air TV Shows: Error occurred.', error);
+    if (data) console.log('On-The-Air TV Shows: Data fetched successfully.', data);
+
+    return { tvShows: data, isLoading, isError, error };
 };

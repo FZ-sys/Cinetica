@@ -1,0 +1,174 @@
+/* styles/page.module.css */
+
+/* Movie container */
+.movieContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 20px;
+  background-color: white;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 40px;
+  background-color: #fff0f7; /* Fond rose pâle pour la section */
+}
+
+/* Movie header (poster + details) */
+.movieHeader {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: #ffebf2; /* Fond rose pâle doux */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.moviePosterContainer {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.moviePoster {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.movieDetails {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.movieTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #f26a8d; /* Titre rose vif */
+  margin-bottom: 10px;
+}
+
+.releaseDate {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f26a8d; /* Couleur rose pour la date */
+}
+
+.movieDescription {
+  font-size: 1.2rem;
+  color: #4f3d5c; /* Texte de description en rose foncé */
+  line-height: 1.8;
+}
+
+.genreList {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.genreItem {
+  background-color: #f26a8d; /* Genre avec fond rose vif */
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.genreItem:hover {
+  background-color: #d95f77; /* Effet de survol avec un rose plus foncé */
+  transform: translateY(-5px);
+}
+
+/* Carousel section */
+.carouselSection {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.castItem,
+.movieImageItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  width: 150px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  background-color: #ffebf2; /* Légère couleur de fond rose pour chaque élément */
+}
+
+.castItem:hover,
+.movieImageItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.castProfile,
+.movieImage {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.castInfo {
+  text-align: center;
+}
+
+.castInfo strong {
+  font-weight: bold;
+  color: #f26a8d; /* Nom de l'acteur en rose vif */
+  font-size: 1.1rem;
+}
+
+.castInfo p {
+  color: #d95f77; /* Texte des personnages en rose foncé */
+  font-size: 1rem;
+}
+
+.movieImage {
+  border-radius: 10px;
+}
+
+/* Error message */
+.errorMessage {
+  text-align: center;
+  color: #f26a8d; /* Erreur en rose vif */
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 50px 20px;
+  background-color: #fff0f7; /* Fond rose doux pour l'erreur */
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button style */
+.button {
+  background-color: #f26a8d; /* Rose vif pour les boutons */
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #d95f77; /* Rose plus foncé au survol du bouton */
+}

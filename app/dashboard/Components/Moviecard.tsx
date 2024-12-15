@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../styles/movieCard.module.css';
+import Image from 'next/image';
 
 type MovieCardProps = {
   title: string;
@@ -10,7 +11,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, posterUrl }) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img
+        <Image
           src={posterUrl}
           alt={title}
           className={styles.poster}

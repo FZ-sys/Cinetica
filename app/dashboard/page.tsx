@@ -3,12 +3,15 @@
 import React, { useState } from "react";
 import { useFetchDiscoverTVShows } from "./hooks/useFetchDiscoverTVShows";
 import { useFetchPopularTVShows } from "./hooks/useFetchPopularTVShows";
-import { useFetchOnTheAirTVShows } from "./hooks/useFetchOnTheAirTVShows";
 import { useFetchTopRatedTVShows } from "./hooks/useFetchTopRatedTVShows";
-import { useFetchDiscoverMovies } from "./hooks/useFetchDiscoverMovies";
-import { useFetchTopRatedMovies } from "./hooks/useFetchTopRatedMovies";
-import { useFetchPopularMovies } from "./hooks/useFetchPopularMovies";
 import { useFetchNowPlayingMovies } from "./hooks/useFetchNowPlayingMovies";
+
+
+import { useFetchTopRatedMovies } from "./hooks/useFetchTopRatedMovies";
+import { useFetchDiscoverMovies } from "./hooks/useFetchDiscoverMovies";
+import { useFetchOnTheAirTVShows } from "./hooks/useFetchOnTheAirTVShows";
+import { useFetchPopularMovies } from "./hooks/useFetchPopularMovies";
+
 import Carousel from "./Components/Carousel";
 import Sidebar from "./Components/Sidebar";
 import SearchBar from "./Components/SearchBar";
@@ -93,17 +96,18 @@ const Dashboard = () => {
     errorDiscoverTVShows ||
     errorOnTheAirTVShows;
 
-  // Helper function to filter items based on searchQuery
-  const filterItems = (items: any[], field: string) => {
-    const query = normalizeString(searchQuery);
-    return items.filter((item) =>
-      normalizeString(item[field] || "").includes(query)
-    );
-  };
+// Helper function to filter items based on searchQuery
+const filterItems = (items: any[], field: string) => {
+  const query = normalizeString(searchQuery);
+  return items.filter((item) =>
+    normalizeString(item[field] || "").includes(query)
+  );  
+};
 
   const mapItemsToCarousel = (items: any[], type: "movie" | "tv") =>
     items?.map((item) => {
-      console.log(`Poster path for ${item.title || item.name}:`, item.poster_path);  // Vérifie la valeur de poster_path
+      console.log(`Données de l'élément (${type})`, item);
+      console.log(`Poster path pour ${item.title || item.title}:`, item.poster_path);
   
       let posterUrl = "/placeholder.jpg";  // Valeur par défaut
   
@@ -112,20 +116,24 @@ const Dashboard = () => {
         const fullPosterUrl = item.poster_path.startsWith("/")
           ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
           : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
-        
+  
         // Assure-toi que l'URL est valide
         if (fullPosterUrl.startsWith('https://image.tmdb.org/t/p/w500/')) {
           posterUrl = fullPosterUrl;
         }
+      } else if (item.images && item.images.length > 0) {
+        // Si poster_path est manquant mais qu'il existe une image dans le champ `images`, on utilise la première image disponible
+        posterUrl = item.images[0];  // Ou une logique différente pour obtenir un poster
       }
   
       return {
         id: item.id,
-        title: type === "movie" ? item.title : item.name,
+        title: type === "movie" ? item.title : item.title,
         posterUrl,
-        link: item.id ? `/${type}/${item.id}` : undefined,
+        link: type === "movie" ? `/movie/${item.id}` : `/tv/${item.id}`,
       };
     }) || [];
+  
 
   if (isLoading) {
     return <div className={styles.loading}>Loading...</div>;
@@ -198,7 +206,7 @@ const Dashboard = () => {
         <h2 id="popularTVShows" className={styles.sectionTitle}>Popular TV Shows</h2>
         <Carousel
           items={mapItemsToCarousel(
-            filterItems(popularTVShows || [], "name"),
+            filterItems(popularTVShows || [], "title"),
             "tv"
           )}
         />
@@ -206,7 +214,7 @@ const Dashboard = () => {
         <h2 id="topRatedTVShows" className={styles.sectionTitle}>Top Rated TV Shows</h2>
         <Carousel
           items={mapItemsToCarousel(
-            filterItems(topRatedTVShows || [], "name"),
+            filterItems(topRatedTVShows || [], "title"),
             "tv"
           )}
         />
@@ -214,7 +222,7 @@ const Dashboard = () => {
         <h2 id="discoverTVShows" className={styles.sectionTitle}>Discover TV Shows</h2>
         <Carousel
           items={mapItemsToCarousel(
-            filterItems(discoverTVShows || [], "name"),
+            filterItems(discoverTVShows || [], "title"),
             "tv"
           )}
         />
@@ -222,7 +230,7 @@ const Dashboard = () => {
         <h2 id="onTheAirTVShows" className={styles.sectionTitle}>On The Air TV Shows</h2>
         <Carousel
           items={mapItemsToCarousel(
-            filterItems(onTheAirTVShows || [], "name"),
+            filterItems(onTheAirTVShows || [], "title"),
             "tv"
           )}
         />
