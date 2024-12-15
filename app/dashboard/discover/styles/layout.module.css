@@ -1,0 +1,95 @@
+/* Layout spécifique pour la page Discover */
+
+/* Ce conteneur recouvre tout l'écran avec un fond sombre transparent */
+.discoverLayout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre avec une opacité de 80% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Assurez-vous que cet élément se trouve au-dessus du reste */
+  }
+  
+  /* Conteneur principal pour tout le contenu dans l'overlay */
+  .overlay {
+    position: relative;
+    background-color: #fff; /* Fond blanc pour le contenu */
+    padding: 20px;
+    max-width: 80%;
+    height: 80%;
+    border-radius: 8px;
+    overflow-y: auto; /* Si le contenu est trop long, un scroll vertical */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /* Le bouton pour fermer le layout */
+  .closeButton button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10000; /* Au-dessus de tous les autres éléments */
+    padding: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .closeButton button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Contenu principal à l'intérieur du layout */
+  .container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  /* Titre des sections de la page */
+  .sectionTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Style optionnel pour les carrousels (si tu as un carousel personnalisé) */
+  .carousel {
+    margin: 0 auto;
+    padding: 10px;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+  
+  .carouselItem {
+    flex: 0 0 auto;
+    max-width: 250px;
+    text-align: center;
+  }
+  
+  .carouselItem img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .loading, .error {
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+  }
+  

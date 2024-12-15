@@ -26,7 +26,7 @@ export const useLoginUseCase = () => {
         // Vérifier si le code s'exécute côté client avant d'utiliser window.location
         if (typeof window !== 'undefined') {
           // Redirection manuelle après connexion réussie
-          window.location.href = "/dashboard"; // Redirection vers /dashboard
+          window.location.href = "/dashboard/discover"; // Redirection vers /dashboard
         }
       } else {
         setError("Adresse e-mail ou mot de passe incorrect.");

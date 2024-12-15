@@ -186,14 +186,6 @@ const filterItems = (items: any[], field: string) => {
           )}
         />
 
-        <h2 id="discoverMovies" className={styles.sectionTitle}>Discover Movies</h2>
-        <Carousel
-          items={mapItemsToCarousel(
-            filterItems(discoverMovies || [], "title"),
-            "movie"
-          )}
-        />
-
         <h2 id="nowPlayingMovies" className={styles.sectionTitle}>Now Playing Movies</h2>
         <Carousel
           items={mapItemsToCarousel(
@@ -215,14 +207,6 @@ const filterItems = (items: any[], field: string) => {
         <Carousel
           items={mapItemsToCarousel(
             filterItems(topRatedTVShows || [], "title"),
-            "tv"
-          )}
-        />
-
-        <h2 id="discoverTVShows" className={styles.sectionTitle}>Discover TV Shows</h2>
-        <Carousel
-          items={mapItemsToCarousel(
-            filterItems(discoverTVShows || [], "title"),
             "tv"
           )}
         />

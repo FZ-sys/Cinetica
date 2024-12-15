@@ -7,11 +7,17 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
-  // Fonction pour gérer le défilement vers une section
+  // Fonction pour gérer la redirection vers /dashboard/discover
   const handleClick = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (sectionId === 'discoverMovies' || sectionId === 'discoverTVShows') {
+      // Redirection vers /dashboard/discover
+      window.location.href = '/dashboard/discover'; // Utilise cette méthode pour rediriger
+    } else {
+      // Sinon, tu peux garder le comportement de scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     toggleSidebar(); // Fermer la sidebar après le clic
   };
@@ -20,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <nav>
         {/* Section principale de navigation */}
-
+        
         {/* Section Movies */}
         <div className={styles.sectionTitle}>Movies</div>
         <ul>

@@ -4,10 +4,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1100; /* Le bouton doit être au-dessus de la sidebar et du contenu */
+  position: fixed; /* Le bouton reste fixe */
+  top: 20px; /* 20px du haut */
+  left: 40px; /* 40px du bord gauche de l'écran (ajustable) */
+  z-index: 1100; /* S'assurer que le bouton reste au-dessus du contenu */
 }
 
 /* Cacher le bouton hamburger lorsque la sidebar est ouverte */
@@ -29,7 +29,6 @@
   background-color: #ffe6f2;
   color: #333;
   padding: 16px;
-  padding-top: 60px; 
 }
 
 .content {
@@ -61,27 +60,3 @@
   text-align: center;
   margin: 32px 0;
 }
-
-.header-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #ffe6f2; /* Couleur d'arrière-plan pour le bandeau */
-  padding: 10px 20px;
-  z-index: 1100; /* Assurer que la barre soit au-dessus de tout le contenu */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
-}
-
-/* Bouton hamburger */
-.sidebarToggle {
-  font-size: 30px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #333;
-}
-

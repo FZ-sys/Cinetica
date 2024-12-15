@@ -1,0 +1,106 @@
+/* Conteneur global */
+.container {
+    position: relative;
+    font-family: 'Poppins', sans-serif; /* Police moderne */
+    color: #5d5d5d; /* Couleur du texte élégante */
+    background: #fef0f6; /* Fond rose pâle doux */
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Bouton de fermeture */
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+    color: #ff64b5;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+.closeButton:hover {
+    transform: scale(1.2);
+    color: #ff64b5; /* Rose doux lors du survol */
+    text-shadow: 0px 0px 8px rgba(255, 100, 181, 0.8); /* Lueur subtile et féminine */
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95); /* Fond clair et aéré */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Contenu de l'overlay */
+.content {
+    position: relative;
+    background: linear-gradient(145deg, #ffdde1, #ffb3c1); /* Dégradé rose doux et chaleureux */
+    border-radius: 20px;
+    padding: 25px;
+    width: 80%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+}
+
+/* Carrousel */
+.carousel {
+    display: flex;
+    gap: 25px; /* Espacement plus large et aéré */
+    overflow-x: hidden; /* Cacher la barre de défilement horizontale */
+    padding: 20px 0;
+    scroll-behavior: smooth;
+}
+
+/* Désactiver la barre de défilement horizontale */
+.carousel::-webkit-scrollbar {
+    display: none; /* Masquer la barre de défilement */
+}
+
+/* Élément du carrousel */
+.carouselItem {
+    flex: 0 0 auto;
+    width: 160px; /* Largeur réduite pour plus d’espace */
+    height: 240px; /* Hauteur réduite et bien proportionnée */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px; /* Coins plus arrondis */
+}
+
+/* Effet de survol */
+.carouselItem:hover {
+    transform: scale(1.05); /* Agrandissement léger pour un effet doux */
+    box-shadow: 0 10px 30px rgba(255, 100, 181, 0.5); /* Ombre douce et féminine */
+}
+
+/* Image du poster */
+.carouselItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Ombre légère et subtile */
+}

@@ -12,17 +12,17 @@ export function middleware(req: NextRequest) {
 
   if (pathname === '/') {
     return userIsAuthenticated
-      ? NextResponse.redirect(new URL('/dashboard', req.url)) 
+      ? NextResponse.redirect(new URL('/dashboard/discover', req.url)) 
       : NextResponse.redirect(new URL('/login', req.url)); 
   }
 
   if (pathname === '/login') {
     return userIsAuthenticated
-      ? NextResponse.redirect(new URL('/dashboard', req.url)) 
+      ? NextResponse.redirect(new URL('/dashboard/discover', req.url)) 
       : NextResponse.next(); 
   }
 
-  if (pathname.startsWith('/dashboard')) {
+  if (pathname.startsWith('/dashboard/discover')) {
     if (!userIsAuthenticated) {
       return NextResponse.redirect(new URL('/login', req.url)); 
     }
@@ -42,7 +42,7 @@ export const config = {
   matcher: [
     '/', 
     '/login', 
-    '/dashboard/:path*',
+    '/dashboard/discover/:path*',
     '/api/movies/:path*', 
     '/api/discover/:path*', 
     '/api/shows/:path*'
