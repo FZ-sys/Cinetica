@@ -1,217 +1,111 @@
-/* tv/[id]/page.module.css */
-
 /* TV Show Container */
 .tvShowContainer {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  padding: 50px 20px;
+  gap: 30px; /* Reduced gap for smaller screens */
+  padding: 20px; /* Adjusted padding */
   background-color: #fff0f7; /* Fond rose pâle par défaut */
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-top: 40px;
+  margin-top: 20px; /* Reduced margin */
 }
 
 /* TV Show Header (poster + details) */
 .tvShowHeader {
   display: flex;
-  gap: 30px;
-  align-items: center;
+  flex-direction: column; /* Change to column on smaller screens */
+  gap: 20px; /* Reduced gap */
+  align-items: center; /* Centered items for smaller screens */
   background-color: #ffebf2; /* Fond rose pâle doux */
-  padding: 20px;
+  padding: 15px; /* Adjusted padding */
   border-radius: 10px;
 }
 
-.tvShowPosterContainer {
-  flex-shrink: 0;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-
+/* TV Show Poster */
 .tvShowPoster {
-  width: 300px;
-  height: auto;
+  width: 100%; /* Full width on smaller screens */
+  max-width: 300px; /* Maximum width to prevent overflow */
+  height: auto; /* Keep aspect ratio */
   border-radius: 10px;
 }
 
-.tvShowDetails {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 10px;
-}
-
+/* TV Show Title */
 .tvShowTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-size: 2rem; /* Adjusted size for smaller screens */
   color: #f26a8d; /* Titre rose vif */
   margin-bottom: 10px;
+  text-align: center; /* Centered for better visibility */
 }
 
-.firstAirDate {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #f26a8d; /* Couleur rose pour la date */
-}
-
+/* TV Show Description */
 .tvShowDescription {
-  font-size: 1.2rem;
+  font-size: 1rem; /* Smaller font size */
   color: #4f3d5c; /* Texte de description en rose foncé */
-  line-height: 1.8;
-}
-
-/* Genre List */
-.genreList {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.genreItem {
-  background-color: #f26a8d; /* Genre avec fond rose vif */
-  padding: 10px 20px;
-  border-radius: 25px;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.genreItem:hover {
-  background-color: #d95f77; /* Effet de survol avec un rose plus foncé */
-  transform: translateY(-5px);
-}
-
-/* Carousel section */
-.carouselSection {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.carousel {
-  display: flex;
-  overflow-x: scroll;
-  gap: 20px;
-  padding: 20px 0;
-}
-
-.castItem,
-.tvShowImageItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  width: 150px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 10px;
-  background-color: #ffebf2; /* Légère couleur de fond rose pour chaque élément */
-}
-
-.castItem:hover,
-.tvShowImageItem:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.castProfile,
-.tvShowImage {
-  width: 120px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.castInfo {
-  text-align: center;
-}
-
-.castInfo strong {
-  font-weight: bold;
-  color: #f26a8d; /* Nom de l'acteur en rose vif */
-  font-size: 1.1rem;
-}
-
-.castInfo p {
-  color: #d95f77; /* Texte des personnages en rose foncé */
-  font-size: 1rem;
-}
-
-/* Error message */
-.errorMessage {
-  text-align: center;
-  color: #f26a8d; /* Erreur en rose vif */
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 50px 20px;
-  background-color: #fff0f7; /* Fond rose doux pour l'erreur */
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Button style */
-.button {
-  background-color: #f26a8d; /* Rose vif pour les boutons */
-  color: white;
-  padding: 12px 25px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #d95f77; /* Rose plus foncé au survol du bouton */
+  line-height: 1.5; /* Adjusted line height */
+  text-align: center; /* Center text */
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .tvShowContainer {
-    padding: 30px 15px; /* Réduire le remplissage sur les écrans plus petits */
+    padding: 20px; /* Padding adjustment */
   }
 
   .tvShowHeader {
-    flex-direction: column; /* Passer à une colonne pour les petits écrans */
-    align-items: flex-start; /* Aligner les éléments à gauche */
+    flex-direction: column; /* Column direction */
+    align-items: center; /* Centering */
   }
 
   .tvShowPoster {
-    width: 100%; /* Rendre l'affiche responsive */
-    max-width: 250px; /* Largeur maximale pour l'affiche */
+    max-width: 90%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
   }
 
   .tvShowTitle {
-    font-size: 2rem; /* Réduire la taille du titre */
+    font-size: 1.8rem; /* Slightly smaller */
   }
 
   .tvShowDescription {
-    font-size: 1rem; /* Réduire la taille de la description */
+    font-size: 0.9rem; /* Smaller size */
   }
 
   .genreItem {
-    font-size: 0.9rem; /* Réduire la taille de la police pour les genres */
+    font-size: 0.9rem; /* Reduce genre item size */
   }
 }
 
 @media (max-width: 480px) {
   .tvShowTitle {
-    font-size: 1.5rem; /* Plus petite taille de titre */
+    font-size: 1.5rem; /* Even smaller size for mobile */
   }
 
   .tvShowDescription {
-    font-size: 0.9rem; /* Plus petite taille de description */
+    font-size: 0.85rem; /* Smaller description */
   }
 
   .errorMessage {
-    font-size: 1.2rem; /* Réduire la taille du message d'erreur */
+    font-size: 1.2rem; /* Error message */
   }
 
   .button {
-    padding: 10px 20px; /* Réduire le remplissage des boutons */
+    padding: 10px 15px; /* Smaller button padding */
+    font-size: 0.9rem; /* Smaller font */
   }
+}
+
+/* Cast and Images */
+.castItem,
+.tvShowImageItem {
+  width: 100%; /* Full width */
+  max-width: 150px; /* Limit size */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+}
+
+.castProfile,
+.tvShowImage {
+  width: 100%; /* Full width for mobile */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover to avoid distortion */
 }
