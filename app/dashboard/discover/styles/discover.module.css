@@ -1,14 +1,12 @@
-/* Conteneur global */
 .container {
     position: relative;
-    font-family: 'Poppins', sans-serif; /* Police moderne */
-    color: #5d5d5d; /* Couleur du texte élégante */
-    background: #fef0f6; /* Fond rose pâle doux */
+    font-family: 'Poppins', sans-serif; 
+    color: #5d5d5d; 
+    background: #fef0f6; 
     padding: 20px;
     border-radius: 15px;
 }
 
-/* Bouton de fermeture */
 .closeButton {
     position: absolute;
     top: 15px;
@@ -24,18 +22,17 @@
 
 .closeButton:hover {
     transform: scale(1.2);
-    color: #ff64b5; /* Rose doux lors du survol */
-    text-shadow: 0px 0px 8px rgba(255, 100, 181, 0.8); /* Lueur subtile et féminine */
+    color: #ff64b5; 
+    text-shadow: 0px 0px 8px rgba(255, 100, 181, 0.8); 
 }
 
-/* Overlay */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95); /* Fond clair et aéré */
+    background: rgba(255, 255, 255, 0.95);
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -53,93 +50,86 @@
     }
 }
 
-/* Contenu de l'overlay */
 .content {
     position: relative;
-    background: linear-gradient(145deg, #ffdde1, #ffb3c1); /* Dégradé rose doux et chaleureux */
+    background: linear-gradient(145deg, #ffdde1, #ffb3c1); 
     border-radius: 20px;
     padding: 25px;
     width: 80%;
     max-width: 1200px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
 }
 
-/* Carrousel */
 .carousel {
     display: flex;
-    gap: 25px; /* Espacement plus large et aéré */
-    overflow-x: hidden; /* Cacher la barre de défilement horizontale */
+    gap: 25px; 
+    overflow-x: hidden; 
     padding: 20px 0;
     scroll-behavior: smooth;
 }
 
-/* Désactiver la barre de défilement horizontale */
 .carousel::-webkit-scrollbar {
-    display: none; /* Masquer la barre de défilement */
+    display: none; 
 }
 
-/* Élément du carrousel */
 .carouselItem {
     flex: 0 0 auto;
-    width: 160px; /* Largeur réduite pour plus d’espace */
-    height: 240px; /* Hauteur réduite et bien proportionnée */
+    width: 160px; 
+    height: 240px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 12px; /* Coins plus arrondis */
+    border-radius: 12px; 
 }
 
-/* Effet de survol */
 .carouselItem:hover {
-    transform: scale(1.05); /* Agrandissement léger pour un effet doux */
-    box-shadow: 0 10px 30px rgba(255, 100, 181, 0.5); /* Ombre douce et féminine */
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 100, 181, 0.5); 
 }
 
-/* Image du poster */
 .carouselItem img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Ombre légère et subtile */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
 }
 
-/* Styles responsives */
 @media (max-width: 768px) {
     .container {
-        padding: 15px; /* Réduction du padding sur les petits écrans */
+        padding: 15px; 
     }
 
     .closeButton {
-        font-size: 28px; /* Réduction de la taille du bouton */
+        font-size: 28px; 
     }
 
     .carousel {
-        padding: 10px 0; /* Réduction du padding du carrousel */
+        padding: 10px 0;
     }
 
     .carouselItem {
-        width: 120px; /* Réduction de la largeur pour les petits écrans */
-        height: 180px; /* Réduction de la hauteur */
+        width: 120px;
+        height: 180px; 
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 10px; /* Réduction supplémentaire du padding */
+        padding: 10px;
     }
 
     .closeButton {
-        font-size: 24px; /* Réduction de la taille du bouton */
+        font-size: 24px; 
     }
 
     .carouselItem {
-        width: 100px; /* Largeur plus petite pour les très petits écrans */
-        height: 150px; /* Réduction de la hauteur */
+        width: 100px; 
+        height: 150px; 
     }
 
     .content {
-        padding: 15px; /* Réduction du padding intérieur */
+        padding: 15px; 
     }
 }

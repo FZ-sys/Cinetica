@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useCredentials } from "./useCredentials";
 
 export const useLoginUseCase = () => {
-  const { credentials, setCredentials } = useCredentials(); // Utilisation de useCredentials pour récupérer les credentials
+  const { credentials, setCredentials } = useCredentials(); 
   const [loading, setLoading] = useState(false); 
   const [error, setError] = useState<string | null>(null); 
 
@@ -17,16 +17,14 @@ export const useLoginUseCase = () => {
       const signInResponse = await signIn("credentials", {
         email: credentials.email,
         password: credentials.password,
-        redirect: false, // Ne pas rediriger automatiquement
+        redirect: false,
       });
 
       console.log("SignIn Response:", signInResponse); 
 
       if (signInResponse?.ok) {
-        // Vérifier si le code s'exécute côté client avant d'utiliser window.location
         if (typeof window !== 'undefined') {
-          // Redirection manuelle après connexion réussie
-          window.location.href = "/dashboard/discover"; // Redirection vers /dashboard
+          window.location.href = "/dashboard/discover"; 
         }
       } else {
         setError("Adresse e-mail ou mot de passe incorrect.");

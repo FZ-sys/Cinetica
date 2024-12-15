@@ -1,23 +1,21 @@
-/* Movie container */
 .movieContainer {
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Reduced gap for better spacing */
-  padding: 30px 15px; /* Adjusted padding for smaller screens */
-  background-color: #fff0f7; /* Fond rose pâle pour la section */
+  gap: 30px; 
+  padding: 30px 15px; 
+  background-color: #fff0f7; 
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-top: 40px;
 }
 
-/* Movie header (poster + details) */
 .movieHeader {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
-  gap: 20px; /* Reduced gap for better spacing */
+  flex-wrap: wrap; 
+  gap: 20px;
   align-items: center;
-  background-color: #ffebf2; /* Fond rose pâle doux */
-  padding: 15px; /* Adjusted padding */
+  background-color: #ffebf2; 
+  padding: 15px; 
   border-radius: 10px;
 }
 
@@ -29,9 +27,9 @@
 }
 
 .moviePoster {
-  width: 100%; /* Use full width on smaller screens */
-  max-width: 300px; /* Maintain max width */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%; 
+  max-width: 300px;
+  height: auto; 
   border-radius: 10px;
 }
 
@@ -39,56 +37,55 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Reduced gap */
+  gap: 15px; 
   padding: 10px;
 }
 
 .movieTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem; /* Large title for larger screens */
-  color: #f26a8d; /* Titre rose vif */
+  font-size: 2.5rem; 
+  color: #f26a8d;
   margin-bottom: 10px;
-  text-align: center; /* Center title */
+  text-align: center; 
 }
 
 .releaseDate {
-  font-size: 1.1rem; /* Initial size for larger screens */
+  font-size: 1.1rem; 
   font-weight: 600;
-  color: #f26a8d; /* Couleur rose pour la date */
-  text-align: center; /* Center release date */
+  color: #f26a8d; 
+  text-align: center; 
 }
 
 .movieDescription {
-  font-size: 1.2rem; /* Initial size for larger screens */
-  color: #4f3d5c; /* Texte de description en rose foncé */
+  font-size: 1.2rem; 
+  color: #4f3d5c; 
   line-height: 1.8;
-  text-align: justify; /* Justified for better readability */
+  text-align: justify; 
 }
 
 .genreList {
   display: flex;
-  gap: 10px; /* Reduced gap for better spacing */
+  gap: 10px; 
   margin-top: 20px;
-  flex-wrap: wrap; /* Allow genres to wrap */
+  flex-wrap: wrap; 
 }
 
 .genreItem {
-  background-color: #f26a8d; /* Genre avec fond rose vif */
-  padding: 10px 15px; /* Adjust padding */
+  background-color: #f26a8d; 
+  padding: 10px 15px;
   border-radius: 25px;
   color: white;
   font-weight: 500;
-  font-size: 1rem; /* Initial font size */
+  font-size: 1rem; 
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
 }
 
 .genreItem:hover {
-  background-color: #d95f77; /* Effet de survol avec un rose plus foncé */
+  background-color: #d95f77; 
   transform: translateY(-5px);
 }
 
-/* Carousel section */
 .carouselSection {
   display: flex;
   flex-direction: column;
@@ -97,8 +94,8 @@
 
 .carousel {
   display: flex;
-  overflow-x: auto; /* Allow horizontal scrolling */
-  gap: 15px; /* Adjusted gap */
+  overflow-x: auto; 
+  gap: 15px; 
   padding: 20px 0;
 }
 
@@ -109,10 +106,10 @@
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  width: 120px; /* Adjusted width */
+  width: 120px; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
-  background-color: #ffebf2; /* Légère couleur de fond rose pour chaque élément */
+  background-color: #ffebf2; 
 }
 
 .castItem:hover,
@@ -123,9 +120,9 @@
 
 .castProfile,
 .movieImage {
-  width: 100%; /* Full width for mobile */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Cover to avoid distortion */
+  width: 100%;
+  height: auto;
+  object-fit: cover; 
 }
 
 .castInfo {
@@ -134,33 +131,31 @@
 
 .castInfo strong {
   font-weight: bold;
-  color: #f26a8d; /* Nom de l'acteur en rose vif */
-  font-size: 1rem; /* Adjusted size */
+  color: #f26a8d;
+  font-size: 1rem; 
 }
 
 .castInfo p {
-  color: #d95f77; /* Texte des personnages en rose foncé */
-  font-size: 0.9rem; /* Adjusted size */
+  color: #d95f77; 
+  font-size: 0.9rem; 
 }
 
-/* Error message */
 .errorMessage {
   text-align: center;
-  color: #f26a8d; /* Erreur en rose vif */
-  font-size: 1.5rem; /* Initial size */
+  color: #f26a8d; 
+  font-size: 1.5rem;
   font-weight: bold;
   padding: 50px 20px;
-  background-color: #fff0f7; /* Fond rose doux pour l'erreur */
+  background-color: #fff0f7; 
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Button style */
 .button {
-  background-color: #f26a8d; /* Rose vif pour les boutons */
+  background-color: #f26a8d;
   color: white;
-  padding: 12px 25px; /* Adjusted padding */
-  font-size: 1rem; /* Initial size */
+  padding: 12px 25px; 
+  font-size: 1rem; 
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -168,72 +163,71 @@
 }
 
 .button:hover {
-  background-color: #d95f77; /* Rose plus foncé au survol du bouton */
+  background-color: #d95f77;
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   .movieHeader {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    align-items: center; /* Center the items */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .moviePoster {
-    max-width: 90%; /* Responsive width for mobile */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 90%; 
+    height: auto; 
   }
 
   .movieContainer {
-    padding: 20px 10px; /* Reduce padding on smaller screens */
+    padding: 20px 10px;
   }
 
   .movieTitle {
-    font-size: 2rem; /* Smaller title on small screens */
+    font-size: 2rem; 
   }
 
   .releaseDate {
-    font-size: 1rem; /* Smaller release date */
+    font-size: 1rem;
   }
 
   .movieDescription {
-    font-size: 1rem; /* Smaller description */
+    font-size: 1rem; 
   }
 
   .genreItem {
-    font-size: 0.9rem; /* Smaller font for genre items */
-    padding: 8px 15px; /* Adjust padding */
+    font-size: 0.9rem; 
+    padding: 8px 15px;
   }
 
   .button {
-    width: 100%; /* Full width buttons on mobile */
-    font-size: 1rem; /* Adjust font size for buttons */
+    width: 100%;
+    font-size: 1rem; 
   }
 
   .carousel {
-    overflow-x: auto; /* Allow horizontal scrolling */
-    padding: 10px 0; /* Adjust padding */
+    overflow-x: auto; 
+    padding: 10px 0; 
   }
 
   .castItem,
   .movieImageItem {
-    width: 100px; /* Smaller width for cast and movie images */
+    width: 100px;
   }
 }
 
 @media (max-width: 480px) {
   .movieTitle {
-    font-size: 1.5rem; /* Further reduce title size */
+    font-size: 1.5rem; 
   }
 
   .releaseDate {
-    font-size: 0.9rem; /* Further reduce release date size */
+    font-size: 0.9rem; 
   }
 
   .movieDescription {
-    font-size: 0.9rem; /* Further reduce description size */
+    font-size: 0.9rem;
   }
 
   .button {
-    padding: 10px 15px; /* Adjust button padding for smaller screens */
+    padding: 10px 15px;
   }
 }

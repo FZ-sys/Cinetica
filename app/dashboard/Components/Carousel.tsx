@@ -4,14 +4,14 @@ import styles from '../styles/carousel.module.css';
 import Image from 'next/image';
 
 type CarouselItem = {
-  id: number; // Identifiant unique pour chaque item
+  id: number;
   title: string;
   posterUrl: string;
-  link?: string; // Lien optionnel, certains éléments peuvent ne pas en avoir
+  link?: string;
 };
 
 type CarouselProps = {
-  items: CarouselItem[]; // Tableau d'items à afficher
+  items: CarouselItem[]; 
 };
 
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
@@ -20,7 +20,6 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   }
 
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    // Utilise une image de remplacement si l'image est introuvable
     event.currentTarget.src = '/placeholder.jpg'; 
   };
 
@@ -31,13 +30,12 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           <Link href={item.link || '#'}>
           <Image
               src={item.posterUrl}
-              alt={`Poster of ${item.title}`} // More descriptive alt text
+              alt={`Poster of ${item.title}`} 
               className={styles.poster}
               onError={handleImageError}
-              width={300}  // Fixed width for the image
+              width={300} 
               height={450}
               />
-            {/* Le titre est supprimé, donc pas de h3 */}
           </Link>
         </div>
       ))}

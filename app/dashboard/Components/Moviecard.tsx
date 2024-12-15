@@ -16,8 +16,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ title, posterUrl }) => {
         alt={title}
         className={styles.poster}
         loading="lazy"
-        width={300}  // You can adjust the size depending on your layout
-        height={450} // Maintaining a 2:3 aspect ratio (width:height)
+        width={300}  
+        height={450} 
       />
 
       </div>

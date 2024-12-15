@@ -6,7 +6,7 @@ export const useFetchNowPlayingMovies = () => {
     const { movieRepository } = useApplicationRepositoryContext();
 
     const { data, isLoading, isError, error } = useQuery<Movie[]>({
-        queryKey: ['now-playing-movies'], // Nom explicite pour cette requête
+        queryKey: ['now-playing-movies'], 
         queryFn: async () => {
             try {
                 console.log('Fetching now playing movies...');
@@ -15,12 +15,11 @@ export const useFetchNowPlayingMovies = () => {
                 return result;
             } catch (err) {
                 console.error('Error fetching now playing movies:', err);
-                throw err; // Nécessaire pour que react-query traite l'erreur
+                throw err; 
             }
         },
     });
 
-    // Logs supplémentaires selon l'état
     if (isLoading) console.log('Now Playing Movies: Loading...');
     if (isError) console.error('Now Playing Movies: Error occurred.', error);
     if (data) console.log('Now Playing Movies: Data fetched successfully.', data);

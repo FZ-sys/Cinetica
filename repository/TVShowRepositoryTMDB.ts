@@ -1,4 +1,3 @@
-// repository/TVShowRepositoryTMDB.ts
 import axios from 'axios';
 import { TVShowDetails } from '@/entities/TVShowsDetails';
 import { TVShowRepository } from './interface/TVShowRepository';
@@ -15,9 +14,8 @@ export class TVShowRepositoryTMDB implements TVShowRepository {
     }
   }
 
-  // Implémentation de la méthode getAiringTodayTVShows
   async getAiringTodayTVShows(): Promise<TVShow[]> {
-    return this.fetchTVShows('/tv/on_the_air'); // Le bon endpoint
+    return this.fetchTVShows('/tv/on_the_air'); 
   }
 
   async getPopularTVShows(): Promise<TVShow[]> {

@@ -1,7 +1,6 @@
-// app/dashboard/layout.tsx
 'use client';
 import React, { useState } from 'react';
-import Sidebar from '../Components/Sidebar'; // Ajustez l'import selon votre structure
+import Sidebar from '../Components/Sidebar'; 
 import styles from './styles/layout.module.css'
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

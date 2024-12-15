@@ -4,7 +4,7 @@ const tvShowRepository = new TVShowRepositoryTMDB();
 
 export async function getTVShowDetails(id: string): Promise<TVShowDetails> {
   try {
-    const tvShowDetails = await tvShowRepository.getTVShowById(id);  // Appelle la méthode pour récupérer les détails de l'émission
+    const tvShowDetails = await tvShowRepository.getTVShowById(id); 
     return tvShowDetails;
   } catch (error) {
     console.error('Error fetching TV show details:', error);

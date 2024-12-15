@@ -1,83 +1,77 @@
-/* styles/base.css */
-
-/* Styles globaux de base */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #fce1e1; /* Fond rose clair */
-  color: #4f3d5c; /* Texte rose foncé pour une meilleure lisibilité */
+  background-color: #fce1e1; 
+  color: #4f3d5c; 
   line-height: 1.6;
   padding: 20px;
-  max-width: 1200px; /* Limite de largeur pour un meilleur centrage */
-  margin: 0 auto; /* Centrer le contenu */
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
 html {
-  font-size: 16px; /* Taille de base pour la typographie */
+  font-size: 16px; 
 }
 
-/* Responsive typography */
 h1 {
-  font-size: 2.5rem; /* Taille des titres */
+  font-size: 2.5rem; 
 }
 
 h2 {
-  font-size: 2rem; /* Taille des sous-titres */
+  font-size: 2rem; 
 }
 
 h3 {
-  font-size: 1.75rem; /* Taille des titres de troisième niveau */
+  font-size: 1.75rem; 
 }
 
 p {
-  font-size: 1rem; /* Taille de paragraphe */
+  font-size: 1rem; 
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
   body {
-    padding: 15px; /* Réduire le remplissage sur les écrans plus petits */
+    padding: 15px; 
   }
 
   h1 {
-    font-size: 2rem; /* Réduire la taille des titres sur les petits écrans */
+    font-size: 2rem; 
   }
 
   h2 {
-    font-size: 1.75rem; /* Réduire la taille des sous-titres */
+    font-size: 1.75rem;
   }
 
   h3 {
-    font-size: 1.5rem; /* Réduire la taille des titres de troisième niveau */
+    font-size: 1.5rem; 
   }
 
   p {
-    font-size: 0.9rem; /* Réduire la taille du texte des paragraphes */
+    font-size: 0.9rem; 
   }
 }
 
 @media (max-width: 480px) {
   body {
-    padding: 10px; /* Réduire le remplissage sur les écrans très petits */
+    padding: 10px; 
   }
 
   h1 {
-    font-size: 1.5rem; /* Taille de titre très petite */
+    font-size: 1.5rem; 
   }
 
   h2 {
-    font-size: 1.25rem; /* Taille de sous-titre très petite */
+    font-size: 1.25rem; 
   }
 
   h3 {
-    font-size: 1rem; /* Taille de titre de troisième niveau très petite */
+    font-size: 1rem; 
   }
 
   p {
-    font-size: 0.8rem; /* Taille de paragraphe très petite */
+    font-size: 0.8rem;
   }
 }
 
-/* Utility classes for margins and paddings */
 .mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-3 { margin-top: 1rem; }

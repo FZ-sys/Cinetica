@@ -1,13 +1,13 @@
 .container {
   padding: 2rem; 
-  background-color: #fce4ec; /* Couleur de fond pour le mode clair */
+  background-color: #fce4ec; 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: 'Arial', sans-serif; 
-  transition: background-color 0.3s ease; /* Transition pour la couleur de fond */
+  transition: background-color 0.3s ease;
 }
 
 .title {
@@ -17,16 +17,16 @@
   margin-bottom: 1.5rem;
   font-weight: 700; 
   text-transform: uppercase; 
-  transition: color 0.3s ease; /* Transition pour la couleur */
+  transition: color 0.3s ease;
 }
 
 .description {
   font-size: 1.125rem; 
   text-align: center;
   margin-bottom: 2rem;
-  color: #555; /* Couleur du texte pour le mode clair */
+  color: #555; 
   line-height: 1.6; 
-  transition: color 0.3s ease; /* Transition pour la couleur */
+  transition: color 0.3s ease; 
 }
 
 .moviesGrid {
@@ -39,10 +39,10 @@
 }
 
 .movieCard {
-  background: #f48fb1; /* Couleur de fond pour le mode clair */
+  background: #f48fb1; 
   padding: 1.25rem; 
   border-radius: 12px; 
-  color: #fff; /* Couleur du texte pour le mode clair */
+  color: #fff; 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
@@ -53,12 +53,12 @@
 .movieCard:hover {
   transform: translateY(-8px); 
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
-  background-color: #f06292; /* Couleur de fond au survol pour le mode clair */
+  background-color: #f06292; 
 }
 
 .movieCard:active {
   transform: scale(0.98);
-  background-color: #e91e63; /* Couleur de fond active pour le mode clair */
+  background-color: #e91e63; 
 }
 
 .movieCard img {
@@ -72,37 +72,36 @@
   transform: scale(1.05); 
 }
 
-/* Styles responsives */
 @media (max-width: 768px) {
   .title {
-    font-size: 2.5rem; /* Ajustement de la taille de la police du titre */
+    font-size: 2.5rem; 
   }
 
   .description {
-    font-size: 1rem; /* Ajustement de la taille de la police de la description */
+    font-size: 1rem; 
   }
 
   .moviesGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajustement de la grille */
-    gap: 1rem; /* Réduction de l'espacement */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 2rem; /* Réduction supplémentaire de la taille de la police du titre */
+    font-size: 2rem; 
   }
 
   .description {
-    font-size: 0.875rem; /* Réduction supplémentaire de la taille de la police de la description */
+    font-size: 0.875rem; 
   }
 
   .moviesGrid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajustement pour les petits écrans */
-    gap: 0.5rem; /* Espacement réduit */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 0.5rem; 
   }
 
   .movieCard {
-    padding: 1rem; /* Ajustement du remplissage pour les cartes de films */
+    padding: 1rem; 
   }
 }

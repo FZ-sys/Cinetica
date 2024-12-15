@@ -9,16 +9,15 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 export const LoginCard: React.FC = () => {
   const { credentials, setCredentials, loginAndRedirectIfSuccess } = useLoginUseCase();
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+  const [errorMessage, setErrorMessage] = useState(""); 
 
-  // Update handleSubmit to accept the event parameter
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission
-    setErrorMessage(""); // Reset error message on submit
+    e.preventDefault(); 
+    setErrorMessage(""); 
     try {
-      await loginAndRedirectIfSuccess(e); // Pass the event to the function
+      await loginAndRedirectIfSuccess(e);
     } catch (err: any) {
-      setErrorMessage(err.message); // Handle login errors
+      setErrorMessage(err.message); 
     }
   };
 
@@ -58,7 +57,7 @@ export const LoginCard: React.FC = () => {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-2 top-2 text-white focus:outline-none"
-                    aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"} // Accessibility
+                    aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"} 
                   >
                     {showPassword ? "🙈" : "👁️"} 
                   </button>
@@ -66,7 +65,7 @@ export const LoginCard: React.FC = () => {
               </div>
               {errorMessage && (
                 <div className="text-red-500 text-center mt-2">
-                  {errorMessage} {/* Display error message */}
+                  {errorMessage}
                 </div>
               )}
             </div>

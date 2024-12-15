@@ -1,40 +1,37 @@
-/* Barre fixe pour le bouton hamburger (toggle) */
 .header-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffe6f2; /* Couleur pastel rose pâle pour le fond */
+  background-color: #ffe6f2;
   padding: 10px 20px;
-  z-index: 1100; /* Barre au-dessus du contenu */
+  z-index: 1100; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour la barre */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le fond et la couleur */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
-/* Le bouton hamburger */
 .sidebarToggle {
   font-size: 30px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  color: #6a4e7c; /* Couleur du bouton */
-  z-index: 1110; /* S'assurer que le bouton reste au-dessus */
+  color: #6a4e7c; 
+  z-index: 1110; 
 }
 
-/* Sidebar */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -250px; /* Initialement cachée */
+  left: -250px; 
   width: 250px;
   height: 100%;
-  background-color: rgba(249, 201, 209, 1); /* Couleur pastel rose pâle */
-  color: #6a4e7c; /* Texte doux, foncé */
+  background-color: rgba(249, 201, 209, 1); 
+  color: #6a4e7c;
   transition: left 0.3s ease-in-out;
-  padding: 80px 15px 10px 15px; /* Espace supérieur pour décoller du bord */
+  padding: 80px 15px 10px 15px;
   z-index: 1000;
   border-radius: 10px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
@@ -43,34 +40,30 @@
   justify-content: flex-start;
 }
 
-/* Sidebar ouverte */
 .sidebar.open {
-  left: 0; /* Affiche la sidebar */
+  left: 0; 
 }
 
-/* Titre principal de la section (ex: Movies, TV Shows) */
 .sidebar .section-title {
   font-size: 20px;
   font-weight: bold;
-  color: #ff66b2; /* Couleur rose accentuée pour les titres */
+  color: #ff66b2;
   margin-bottom: 10px;
   cursor: default;
   padding: 5px 0;
-  text-transform: uppercase; /* Mettre en majuscules */
-  letter-spacing: 1px; /* Espacement entre les lettres pour un look plus aéré */
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Effet hover sur les titres des sections */
 .sidebar .section-title:hover {
-  color: #ff0066; /* Changement de couleur au survol */
-  background-color: rgba(255, 102, 178, 0.2); /* Ajout d'un fond au survol */
+  color: #ff0066;
+  background-color: rgba(255, 102, 178, 0.2); 
   border-radius: 5px;
 }
 
-/* Liens des sections cliquables (ex: Discover, Popular) */
 .sidebar nav ul {
   list-style-type: none;
   padding: 0;
@@ -78,32 +71,29 @@
   flex-grow: 1;
 }
 
-/* Chaque élément cliquable de la navigation */
 .sidebar nav ul li {
   font-size: 16px;
   font-weight: normal;
-  color: #6a4e7c; /* Couleur douce pour les liens */
+  color: #6a4e7c; 
   padding: 8px 0;
   transition: color 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
-  text-transform: capitalize; /* Capitalisation des mots */
+  text-transform: capitalize; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: 15px; /* Ajout d'un padding à gauche pour décaler les éléments cliquables */
+  padding-left: 15px; 
 }
 
-/* Effet au survol des liens */
 .sidebar nav ul li:hover {
-  color: #ff0066; /* Changement de couleur au survol */
-  background-color: rgba(255, 102, 178, 0.2); /* Fond rose clair */
-  border-radius: 5px; /* Coins arrondis au survol */
+  color: #ff0066;
+  background-color: rgba(255, 102, 178, 0.2); 
+  border-radius: 5px; 
 }
 
-/* Titre de la navigation (ex: Movies, TV Shows, etc.) */
 .sidebar .nav-title {
   font-size: 18px;
-  color: #ff0066; /* Rose vif pour la section principale */
+  color: #ff0066;
   font-weight: bold;
   margin-bottom: 15px;
   text-transform: uppercase;
@@ -113,57 +103,53 @@
   text-overflow: ellipsis;
 }
 
-/* Ajustement du contenu quand la sidebar est ouverte */
 .content.sidebarOpen {
-  margin-left: 250px; /* Décale le contenu à droite pour laisser place à la sidebar */
-  transition: margin-left 0.4s ease; /* Transition douce pour le glissement */
+  margin-left: 250px; 
+  transition: margin-left 0.4s ease;
 }
 
-/* Pour que le contenu ne soit pas chevauché */
 .dashboard {
-  padding-top: 60px; /* Espacement en haut pour que le contenu ne soit pas masqué par la barre fixe */
-  transition: margin-left 0.3s ease; /* Animation pour le déplacement du contenu */
+  padding-top: 60px;
+  transition: margin-left 0.3s ease; 
 }
 
-/* Cacher le bouton hamburger lorsque la sidebar est ouverte */
 .sidebar.open ~ .content .sidebarToggle {
-  display: none; /* Le bouton hamburger disparaît lorsque la sidebar est ouverte */
+  display: none; 
 }
 
-/* Styles responsives */
 @media (max-width: 768px) {
   .header-bar {
-    padding: 10px 15px; /* Ajustement du padding sur les écrans plus petits */
+    padding: 10px 15px;
   }
 
   .sidebar {
-    width: 200px; /* Réduction de la largeur de la sidebar pour les écrans plus petits */
+    width: 200px; 
   }
 
   .sidebarToggle {
-    font-size: 24px; /* Réduction de la taille du bouton hamburger */
+    font-size: 24px; 
   }
 
   .sidebar nav ul li {
-    font-size: 14px; /* Réduction de la taille des liens */
+    font-size: 14px; 
   }
 }
 
 @media (max-width: 480px) {
   .header-bar {
-    padding: 10px 10px; /* Moins de padding sur les très petits écrans */
+    padding: 10px 10px; 
   }
 
   .sidebar {
-    width: 100%; /* Sidebar pleine largeur sur mobile */
-    left: -100%; /* Initialement cachée hors écran */
+    width: 100%; 
+    left: -100%;
   }
 
   .sidebar.open {
-    left: 0; /* Affiche la sidebar en pleine largeur */
+    left: 0; 
   }
 
   .content.sidebarOpen {
-    margin-left: 0; /* Pas de décalage de contenu sur mobile */
+    margin-left: 0; 
   }
 }

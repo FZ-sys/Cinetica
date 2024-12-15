@@ -7,21 +7,21 @@
 }
 
 .carouselContainer::-webkit-scrollbar {
-  display: none; /* Cache la barre de défilement */
+  display: none; 
 }
 
 .carouselItem {
   flex: 0 0 auto;
-  width: 150px; /* Largeur par défaut pour les écrans larges */
+  width: 150px; 
   text-align: center;
 }
 
 .poster {
-  width: 100%;  /* Utilise 100% de la largeur de l'élément parent */
-  height: 300px;  /* Hauteur fixe pour uniformité */
-  object-fit: cover;  /* S'assure que l'image s'adapte à la taille sans déformation */
-  border-radius: 8px;  /* Coins arrondis */
-  transition: transform 0.3s;  /* Transition fluide lors des transformations */
+  width: 100%;  
+  height: 300px; 
+  object-fit: cover;  
+  border-radius: 8px;  
+  transition: transform 0.3s;  
 }
 
 .poster:hover {
@@ -31,35 +31,34 @@
 
 .title {
   font-size: 14px;
-  color: #333; /* Couleur par défaut */
+  color: #333; 
   margin-top: 8px;
 }
 
-/* Styles responsives */
 @media (max-width: 768px) {
   .carouselItem {
-    width: 120px; /* Réduit la largeur pour les tablettes */
+    width: 120px;
   }
 
   .poster {
-    height: 200px; /* Réduit la hauteur des images pour les tablettes */
+    height: 200px; 
   }
 
   .title {
-    font-size: 12px; /* Réduit la taille de la police pour les tablettes */
+    font-size: 12px; 
   }
 }
 
 @media (max-width: 480px) {
   .carouselItem {
-    width: 100px; /* Réduit encore plus la largeur pour les petits écrans */
+    width: 100px; 
   }
 
   .poster {
-    height: 150px; /* Réduit la hauteur des images pour les petits écrans */
+    height: 150px; 
   }
 
   .title {
-    font-size: 10px; /* Réduit encore la taille de la police pour les petits écrans */
+    font-size: 10px; 
   }
 }

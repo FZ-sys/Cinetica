@@ -1,13 +1,12 @@
 import React from 'react';
-import styles from './page.module.css'; // Importation du module CSS
+import styles from './page.module.css'; 
 import '../styles/base.css';
 import Image from 'next/image';
 
-// Définir les interfaces
 interface MovieDetails {
   title: string;
-  overview: string;  // Description du film
-  release_date: string;  // Date de sortie
+  overview: string; 
+  release_date: string; 
   genres: { name: string }[];
   poster_path: string | null;
 }
@@ -24,11 +23,10 @@ interface MovieImages {
 }
 
 const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id } = await params; // Résolution de la promesse
+  const { id } = await params; 
 
   const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  // Helper function to fetch data
   const fetchData = async (url: string) => {
     const response = await fetch(url);
     if (!response.ok) {
@@ -54,7 +52,7 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                 width={500}
                 height={750}
                 loading="lazy"
-                layout="intrinsic" // Use this if you need a responsive size based on the container
+                layout="intrinsic" 
               />
             ) : (
               <div className={styles.posterFallback}>Image indisponible</div>
@@ -82,7 +80,7 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
             {castDetails.cast.slice(0, 10).map((member: CastMember, index: number) => {
               const actorImage = member.profile_path
                 ? `https://image.tmdb.org/t/p/w200${member.profile_path}`
-                : '/actordefaut.png'; // Image par défaut
+                : '/actordefaut.png';
 
               return (
                 <div key={index} className={styles.castItem}>
@@ -93,7 +91,7 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                     width={200}
                     height={300}
                     loading="lazy"
-                    layout="intrinsic" // Use this if you need a responsive size based on the container
+                    layout="intrinsic" 
                   />
                   <div className={styles.castInfo}>
                     <strong>{member.name}</strong>
@@ -117,7 +115,7 @@ const MovieDetailsPage = async ({ params }: { params: Promise<{ id: string }> })
                   width={500}
                   height={300}
                   loading="lazy"
-                  layout="intrinsic" // Use this if you need a responsive size based on the container
+                  layout="intrinsic"
                 />
               </div>
             ))}

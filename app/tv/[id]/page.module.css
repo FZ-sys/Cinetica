@@ -1,111 +1,104 @@
-/* TV Show Container */
 .tvShowContainer {
   display: flex;
   flex-direction: column;
-  gap: 30px; /* Reduced gap for smaller screens */
-  padding: 20px; /* Adjusted padding */
-  background-color: #fff0f7; /* Fond rose pâle par défaut */
+  gap: 30px; 
+  padding: 20px; 
+  background-color: #fff0f7; 
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin-top: 20px; /* Reduced margin */
+  margin-top: 20px; 
 }
 
-/* TV Show Header (poster + details) */
 .tvShowHeader {
   display: flex;
-  flex-direction: column; /* Change to column on smaller screens */
-  gap: 20px; /* Reduced gap */
-  align-items: center; /* Centered items for smaller screens */
-  background-color: #ffebf2; /* Fond rose pâle doux */
-  padding: 15px; /* Adjusted padding */
+  flex-direction: column;
+  gap: 20px; 
+  align-items: center; 
+  background-color: #ffebf2;
+  padding: 15px; 
   border-radius: 10px;
 }
 
-/* TV Show Poster */
 .tvShowPoster {
-  width: 100%; /* Full width on smaller screens */
-  max-width: 300px; /* Maximum width to prevent overflow */
-  height: auto; /* Keep aspect ratio */
+  width: 100%;
+  max-width: 300px;
+  height: auto; 
   border-radius: 10px;
 }
 
-/* TV Show Title */
 .tvShowTitle {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem; /* Adjusted size for smaller screens */
-  color: #f26a8d; /* Titre rose vif */
+  font-size: 2rem; 
+  color: #f26a8d; 
   margin-bottom: 10px;
-  text-align: center; /* Centered for better visibility */
+  text-align: center; 
 }
 
-/* TV Show Description */
 .tvShowDescription {
-  font-size: 1rem; /* Smaller font size */
-  color: #4f3d5c; /* Texte de description en rose foncé */
-  line-height: 1.5; /* Adjusted line height */
-  text-align: center; /* Center text */
+  font-size: 1rem; 
+  color: #4f3d5c; 
+  line-height: 1.5;
+  text-align: center;
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .tvShowContainer {
-    padding: 20px; /* Padding adjustment */
+    padding: 20px;
   }
 
   .tvShowHeader {
-    flex-direction: column; /* Column direction */
-    align-items: center; /* Centering */
+    flex-direction: column; 
+    align-items: center;
   }
 
   .tvShowPoster {
-    max-width: 90%; /* Responsive width */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 90%; 
+    height: auto;
   }
 
   .tvShowTitle {
-    font-size: 1.8rem; /* Slightly smaller */
+    font-size: 1.8rem; 
   }
 
   .tvShowDescription {
-    font-size: 0.9rem; /* Smaller size */
+    font-size: 0.9rem; 
   }
 
   .genreItem {
-    font-size: 0.9rem; /* Reduce genre item size */
+    font-size: 0.9rem; 
   }
 }
 
 @media (max-width: 480px) {
   .tvShowTitle {
-    font-size: 1.5rem; /* Even smaller size for mobile */
+    font-size: 1.5rem;
   }
 
   .tvShowDescription {
-    font-size: 0.85rem; /* Smaller description */
+    font-size: 0.85rem; 
   }
 
   .errorMessage {
-    font-size: 1.2rem; /* Error message */
+    font-size: 1.2rem; 
   }
 
   .button {
-    padding: 10px 15px; /* Smaller button padding */
-    font-size: 0.9rem; /* Smaller font */
+    padding: 10px 15px;
+    font-size: 0.9rem; 
   }
 }
 
-/* Cast and Images */
 .castItem,
 .tvShowImageItem {
-  width: 100%; /* Full width */
-  max-width: 150px; /* Limit size */
+  width: 100%; 
+  max-width: 150px; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
 }
 
 .castProfile,
 .tvShowImage {
-  width: 100%; /* Full width for mobile */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Cover to avoid distortion */
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
 }

@@ -4,7 +4,7 @@ export interface MovieDetails extends Movie {
   runtime: number;
   budget: number;
   revenue: number;
-  credits: {  // Ajoute cette ligne pour définir 'credits'
+  credits: {  
     name: string;
     role: string;
     image: string;

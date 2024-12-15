@@ -17,22 +17,20 @@ import Sidebar from "./Components/Sidebar";
 import SearchBar from "./Components/SearchBar";
 import styles from './styles/dashboard.module.css';
 
-// Fonction de normalisation des chaînes de caractères
 const normalizeString = (str: string) => {
   return str
-    .trim() // Supprime les espaces avant et après
-    .toLowerCase() // Met en minuscule
-    .normalize("NFD") // Décompose les caractères accentués en lettres de base et accents
-    .replace(/[\u0300-\u036f]/g, ""); // Supprime les accents
+    .trim() 
+    .toLowerCase() 
+    .normalize("NFD") 
+    .replace(/[\u0300-\u036f]/g, "");
 };
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(true);  // Sidebar ouverte par défaut
+  const [sidebarOpen, setSidebarOpen] = useState(true); 
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  // Fetch movies
   const {
     movies: popularMovies,
     isLoading: loadingMovies,
@@ -54,7 +52,6 @@ const Dashboard = () => {
     isError: errorNowPlayingMovies,
   } = useFetchNowPlayingMovies();
 
-  // Fetch TV shows
   const {
     tvShows: popularTVShows,
     isLoading: loadingTVShows,
@@ -96,7 +93,6 @@ const Dashboard = () => {
     errorDiscoverTVShows ||
     errorOnTheAirTVShows;
 
-// Helper function to filter items based on searchQuery
 const filterItems = (items: any[], field: string) => {
   const query = normalizeString(searchQuery);
   return items.filter((item) =>
@@ -109,21 +105,18 @@ const filterItems = (items: any[], field: string) => {
       console.log(`Données de l'élément (${type})`, item);
       console.log(`Poster path pour ${item.title || item.title}:`, item.poster_path);
   
-      let posterUrl = "/placeholder.jpg";  // Valeur par défaut
+      let posterUrl = "/placeholder.jpg";  
   
       if (item.poster_path) {
-        // Vérifie si poster_path commence par un `/` et le corrige si nécessaire
         const fullPosterUrl = item.poster_path.startsWith("/")
           ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
           : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
-  
-        // Assure-toi que l'URL est valide
+
         if (fullPosterUrl.startsWith('https://image.tmdb.org/t/p/w500/')) {
           posterUrl = fullPosterUrl;
         }
       } else if (item.images && item.images.length > 0) {
-        // Si poster_path est manquant mais qu'il existe une image dans le champ `images`, on utilise la première image disponible
-        posterUrl = item.images[0];  // Ou une logique différente pour obtenir un poster
+        posterUrl = item.images[0];  
       }
   
       return {
@@ -149,27 +142,23 @@ const filterItems = (items: any[], field: string) => {
 
   return (
     <div className={styles.dashboard}>
-      {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
       <div
         className={`${styles.content} ${sidebarOpen ? styles.sidebarOpen : ''}`}
       >
-        {/* Bouton hamburger */}
         <button
           className={`${styles.sidebarToggle} ${sidebarOpen ? styles.hidden : ''}`}
           onClick={toggleSidebar}
         >
           ☰
         </button>
- 
-        {/* Search Bar */}
+
         <SearchBar
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
 
-        {/* Movies Sections */}
         <h2 id="popularMovies" className={styles.sectionTitle}>Popular Movies</h2>
         <Carousel
           items={mapItemsToCarousel(
@@ -194,7 +183,6 @@ const filterItems = (items: any[], field: string) => {
           )}
         />
 
-        {/* TV Shows Sections */}
         <h2 id="popularTVShows" className={styles.sectionTitle}>Popular TV Shows</h2>
         <Carousel
           items={mapItemsToCarousel(

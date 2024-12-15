@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/sidebar.module.css'; // Assume que tu as un fichier CSS pour la Sidebar
+import styles from '../styles/sidebar.module.css'; 
 
 interface SidebarProps {
   isOpen: boolean;
@@ -7,27 +7,21 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
-  // Fonction pour gérer la redirection vers /dashboard/discover
   const handleClick = (sectionId: string) => {
     if (sectionId === 'discoverMovies' || sectionId === 'discoverTVShows') {
-      // Redirection vers /dashboard/discover
-      window.location.href = '/dashboard/discover'; // Utilise cette méthode pour rediriger
+      window.location.href = '/dashboard/discover'; 
     } else {
-      // Sinon, tu peux garder le comportement de scroll
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    toggleSidebar(); // Fermer la sidebar après le clic
+    toggleSidebar(); 
   };
 
   return (
     <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <nav>
-        {/* Section principale de navigation */}
-        
-        {/* Section Movies */}
         <div className={styles.sectionTitle}>Movies</div>
         <ul>
           <li>

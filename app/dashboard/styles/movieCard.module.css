@@ -4,12 +4,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 250px; /* Largeur par défaut */
-  height: 380px; /* Hauteur par défaut */
+  width: 250px; 
+  height: 380px;
   margin: 15px;
   border-radius: 16px; 
   overflow: hidden;
-  background: #fff; /* Couleur de fond par défaut */
+  background: #fff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, background 0.3s ease; 
   cursor: pointer; 
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9; /* Couleur de fond par défaut */
+  background-color: #f9f9f9; 
 }
 
 .poster {
@@ -46,14 +46,14 @@
 .cardInfo {
   padding: 12px; 
   text-align: center;
-  background: #fff; /* Couleur de fond par défaut */
+  background: #fff;
   width: 100%;
 }
 
 .title {
   font-size: 1.125rem; 
   font-weight: 600; 
-  color: #333; /* Couleur du texte par défaut */
+  color: #333;
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -63,32 +63,31 @@
 
 .cardInfo .description {
   font-size: 0.875rem; 
-  color: #666; /* Couleur du texte par défaut */
+  color: #666; 
   margin-top: 8px;
   line-height: 1.5;
 }
 
-/* Styles responsives */
 @media (max-width: 768px) {
   .card {
-    width: 200px; /* Ajustement de la largeur pour les écrans moyens */
-    height: auto; /* Permet à la hauteur de s'ajuster en fonction du contenu */
-    margin: 10px; /* Réduction des marges */
+    width: 200px;
+    height: auto; 
+    margin: 10px; 
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    width: 150px; /* Ajustement de la largeur pour les petits écrans */
-    height: auto; /* Permet à la hauteur de s'ajuster en fonction du contenu */
-    margin: 5px; /* Réduction des marges */
+    width: 150px; 
+    height: auto; 
+    margin: 5px; 
   }
 
   .title {
-    font-size: 1rem; /* Réduction de la taille de la police du titre */
+    font-size: 1rem; 
   }
 
   .cardInfo .description {
-    font-size: 0.75rem; /* Réduction de la taille de la police de la description */
+    font-size: 0.75rem; 
   }
 }

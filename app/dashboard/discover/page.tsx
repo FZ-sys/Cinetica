@@ -16,22 +16,13 @@ const normalizeString = (str: string) => {
 
 const DiscoverPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isDiscoverOpen, setIsDiscoverOpen] = useState(true);  // Etat pour afficher ou cacher Discover
-  
-  // Fonction pour fermer le Discover et rediriger vers le dashboard
-  const toggleDiscover = () => {
-    setIsDiscoverOpen(false); // Ferme l'overlay
-    window.location.href = '/dashboard';  // Redirection vers le dashboard
-  };
-  
-  // Fetch movies
+
   const {
     movies: discoverMovies,
     isLoading: loadingDiscoverMovies,
     isError: errorDiscoverMovies,
   } = useFetchDiscoverMovies();
 
-  // Fetch TV shows
   const {
     tvShows: discoverTVShows,
     isLoading: loadingDiscoverTVShows,
@@ -50,10 +41,12 @@ const DiscoverPage = () => {
 
   const mapItemsToCarousel = (items: any[], type: "movie" | "tv") =>
     items?.map((item) => {
-      let posterUrl = "/placeholder.jpg";  // Valeur par défaut
+      console.log(`Données de l'élément (${type})`, item);
+      console.log(`Poster path pour ${item.title || item.title}:`, item.poster_path);
+
+      let posterUrl = "/placeholder.jpg"; 
 
       if (item.poster_path) {
-        // Vérifie si poster_path commence par un `/` et le corrige si nécessaire
         const fullPosterUrl = item.poster_path.startsWith("/")
           ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
           : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
@@ -62,7 +55,7 @@ const DiscoverPage = () => {
           posterUrl = fullPosterUrl;
         }
       } else if (item.images && item.images.length > 0) {
-        posterUrl = item.images[0];  // Ou une logique différente pour obtenir un poster
+        posterUrl = item.images[0];  
       }
 
       return {
@@ -72,6 +65,11 @@ const DiscoverPage = () => {
         link: type === "movie" ? `/movie/${item.id}` : `/tv/${item.id}`,
       };
     }) || [];
+
+
+  const closeDiscover = () => {
+    window.location.href = '/dashboard'; 
+  };
   
   if (isLoading) {
     return <div className={styles.loading}>Chargement...</div>;
@@ -87,42 +85,29 @@ const DiscoverPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* Si l'overlay Discover est ouvert, on l'affiche */}
-      {isDiscoverOpen && (
-        <div className={styles.overlay}>
-          {/* Bouton pour fermer le Discover (croix en haut à droite) */}
-          <button className={styles.closeButton} onClick={toggleDiscover}>
-            ✖
-          </button>
-
-          <div className={styles.content}>
-            {/* Carrousel des films */}
-            <h2 id="discoverMovies" className={styles.sectionTitle}>Discover Movies</h2>
-            <Carousel
-              items={mapItemsToCarousel(
-                filterItems(discoverMovies || [], "title"),
-                "movie"
-              )}
-            />
-
-            {/* Carrousel des séries */}
-            <h2 id="discoverTVShows" className={styles.sectionTitle}>Discover TV Shows</h2>
-            <Carousel
-              items={mapItemsToCarousel(
-                filterItems(discoverTVShows || [], "title"),
-                "tv"
-              )}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Bouton pour ouvrir Discover */}
-      {!isDiscoverOpen && (
-        <button className={styles.openButton} onClick={() => setIsDiscoverOpen(true)}>
-          Ouvrir Discover
+      <div className={styles.overlay}>
+        <button className={styles.closeButton} onClick={closeDiscover}>
+          ✖
         </button>
-      )}
+
+        <div className={styles.content}>
+          <h2 id="discoverMovies" className={styles.sectionTitle}>Discover Movies</h2>
+          <Carousel
+            items={mapItemsToCarousel(
+              filterItems(discoverMovies || [], "title"),
+              "movie"
+            )}
+          />
+
+          <h2 id="discoverTVShows" className={styles.sectionTitle}>Discover TV Shows</h2>
+          <Carousel
+            items={mapItemsToCarousel(
+              filterItems(discoverTVShows || [], "title"),
+              "tv"
+            )}
+          />
+        </div>
+      </div>
     </div>
   );
 };

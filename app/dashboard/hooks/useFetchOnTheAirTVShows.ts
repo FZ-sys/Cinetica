@@ -15,12 +15,11 @@ export const useFetchOnTheAirTVShows = () => {
                 return result;
             } catch (err) {
                 console.error('Error fetching on-the-air TV shows:', err);
-                throw err; // Important pour que react-query puisse gérer l'erreur
+                throw err; 
             }
         },
     });
 
-    // Logs pour chaque étape du cycle de la requête
     if (isLoading) console.log('On-The-Air TV Shows: Loading...');
     if (isError) console.error('On-The-Air TV Shows: Error occurred.', error);
     if (data) console.log('On-The-Air TV Shows: Data fetched successfully.', data);

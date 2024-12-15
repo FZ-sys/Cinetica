@@ -9,7 +9,7 @@ export const useFetchPopularTVShows = () => {
         queryKey: ['popular-tv-shows'],
         queryFn: async () => {
             const response = await tvShowRepository.getPopularTVShows();
-            console.log("Réponse API - TV Shows:", response); // Logue la réponse de l'API
+            console.log("Réponse API - TV Shows:", response); 
             return response;
         },
     });

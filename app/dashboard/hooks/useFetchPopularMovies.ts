@@ -5,10 +5,20 @@ import { useApplicationRepositoryContext } from '@/repository/ApplicationReposit
 export const useFetchPopularMovies = () => {
     const { movieRepository } = useApplicationRepositoryContext();
 
-    const { data, isLoading, isError } = useQuery<Movie[]>({
+    const { data, isLoading, isError, error } = useQuery<Movie[]>({
         queryKey: ['popular-movies'],
-        queryFn: async () => await movieRepository.getPopularMovies(),
+        queryFn: async () => {
+            try {
+                return await movieRepository.getPopularMovies();
+            } catch (error) {
+                console.error("Erreur dans la récupération des films populaires:", error);
+                throw error; 
+            }
+        },
     });
-
+    
+    if (isError) {
+        console.error('Error loading popular movies:', error);
+    }
     return { movies: data, isLoading, isError };
 };
